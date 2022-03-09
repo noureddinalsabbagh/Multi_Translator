@@ -27,11 +27,9 @@ mongoose
 // Routes
 const userRouter = require('./routes/userRoutes');
 
-app.use('user', userRouter);
+app.use('/user', userRouter);
 
 ///////////////////////
 app.listen(process.env.PORT || port, () => {
   console.log(`connected to ${port}`);
 });
-
-//comment
