@@ -13,7 +13,7 @@ exports.register = async (req, res) => {
 
     const token = jwt.sign({ email }, process.env.COOKIE_SECRET);
 
-    const newUser = await User.create({
+    await User.create({
       userName,
       email: email,
       password: hashedPass,
@@ -26,9 +26,8 @@ exports.register = async (req, res) => {
   }
 };
 
-
 exports.logIn = async (req, res) => {
-  const { email, password } = req.body
+  const { email, password } = req.body;
 
   try {
     // check if the user exists
@@ -36,7 +35,7 @@ exports.logIn = async (req, res) => {
     if (!foundUser) {
       return res
         .status(404)
-        .json({ errMsg: 'User not found, please register!' })
+        .json({ errMsg: 'User not found, please register!' });
     }
     // compare the passwords
     const passwordIsValid = await bcrypt.compare(password, foundUser.password);
@@ -46,15 +45,15 @@ exports.logIn = async (req, res) => {
 
     // send a token with cookies
     const payload = { id: foundUser._id, email: foundUser.email };
-    const token = jwt.sign(payload, process.env.COOKIE_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign(payload, process.env.COOKIE_SECRET, {
+      expiresIn: '1h',
+    });
     res
       .status(200)
-      .cookie("token_cookie", token, { httpOnly: true, secure: false })
-      .json({ msg: "you successfully logged in!" });
+      .cookie('token_cookie', token, { httpOnly: true, secure: false })
+      .json({ msg: 'you successfully logged in!' });
   } catch (error) {
     console.log(error);
     res.status(400).json(error);
   }
-
-
 };
