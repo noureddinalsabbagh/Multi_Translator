@@ -9,8 +9,9 @@ const app = express();
 const port = 4001;
 
 // Global middleware
-app.use(cors({ credentials: true, origin: true }));
+app.use(express.json());
 app.use(cookieParser());
+app.use(cors({ credentials: true, origin: true }));
 
 mongoose
   .connect(
@@ -22,6 +23,11 @@ mongoose
   .catch((error) => {
     console.log('an error occurred while connecting ot the db', error.message);
   });
+
+// Routes
+const userRouter = require('./routes/userRoutes');
+
+app.use('user', userRouter);
 
 ///////////////////////
 app.listen(process.env.PORT || port, () => {
