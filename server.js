@@ -23,7 +23,7 @@ mongoose
     console.log('an error occurred while connecting ot the db', error.message);
   });
 
-////////////////////////////
+///////////////////////
 app.listen(process.env.PORT || port, () => {
   console.log(`connected to ${port}`);
 });
