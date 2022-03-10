@@ -6,8 +6,7 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   status: { type: String, enum: ['active', 'pending'], default: 'pending' },
   confirmationCode: { type: String, unique: true },
-  languages: { type: [String] },
-  firstTimer: { type: Boolean, default: false },
+  languages: { type: [String], default: [] },
 });
 
 const User = model('User', userSchema);
