@@ -1,12 +1,12 @@
 const User = require('../models/userModel');
-
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const sendEmail = require('../helpers/sendEmail');
 
+// Register Controller
 exports.register = async (req, res) => {
   try {
-    const { userName, email, password } = req.body;
+    const { userName, email, password, languages } = req.body;
     // check if the user exists
     const foundUser = await User.findOne({ email: email }).lean();
     if (foundUser)
@@ -21,13 +21,15 @@ exports.register = async (req, res) => {
       email: email.toLowerCase(),
       password: hashedPass,
       confirmationCode: token,
+      languages: languages,
     });
 
-
-
-    const emailSent = await sendEmail(userName, email, token)
-    res.status(201).json({ msg: 'User was registered successfully! Please check your email', emailSent });
-   
+    // Send verification email
+    // await sendEmail(userName, email, token);
+    res.status(201).json({
+      msg: 'User was registered successfully! Please check your email',
+      newUser,
+    });
   } catch (error) {
     res.status(500).json(error.message);
   }
@@ -40,6 +42,7 @@ exports.logIn = async (req, res) => {
     const token = jwt.sign(payload, process.env.COOKIE_SECRET, {
       expiresIn: '1h',
     });
+
     res
       .status(200)
       .cookie('token_cookie', token, { httpOnly: true, secure: false })
@@ -52,23 +55,24 @@ exports.logIn = async (req, res) => {
 
 exports.verifyUser = async (req, res) => {
   try {
-    const foundUser = await User.findOne({ confirmationCode: req.params.code })
+    // Find user with the code matching the one sent in verification mail
+    const foundUser = await User.findOne({ confirmationCode: req.params.code });
     if (!foundUser) {
-      return res.status(404).send({ msg: "User Not found." });
+      return res.status(404).send({ msg: 'User Not found.' });
     }
-    foundUser.status = "active"
+
+    // update user status if code sent from from end matches the one in the document
+    foundUser.status = 'active';
     foundUser.save((err) => {
       if (err) {
         res.status(500).send({ message: err });
-        return
+        return;
       }
-    })
-    return res.status(200).send("you can login right now!")
+    });
 
-
-
+    return res.status(200).send('you can login right now!');
   } catch (error) {
     console.log(error);
     res.status(400).json(error);
   }
-}
+};

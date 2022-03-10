@@ -6,7 +6,7 @@ const isAuthenticated = async (req, res, next) => {
     const { email, password } = req.body;
 
     // check if the user exists
-    const foundUser = await User.findOne({ email: email }).lean();
+    const foundUser = await User.findOne({ email: email.toLowerCase() }).lean();
     if (!foundUser) {
       return res
         .status(404)
