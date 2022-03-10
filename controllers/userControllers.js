@@ -7,59 +7,47 @@ const sendEmail = require('../helpers/sendEmail');
 exports.register = async (req, res) => {
   try {
     const { userName, email, password } = req.body;
-    const user = await User.findOne({ email: email }).lean();
-    if (user) res.status(403).json({ errMsg: 'email is already in use' });
-
+    // check if the user exists
+    const foundUser = await User.findOne({ email: email }).lean();
+    if (foundUser)
+      return res.status(403).json({ errMsg: 'email is already in use' });
+    // hash Password
     const hashedPass = await bcrypt.hash(password, 10);
-
+    // create a new token
     const token = jwt.sign({ email }, process.env.COOKIE_SECRET);
-
+    // create a new user
     const newUser = await User.create({
       userName,
-      email: email,
+      email: email.toLowerCase(),
       password: hashedPass,
       confirmationCode: token,
     });
 
 
+
     const emailSent = await sendEmail(userName, email, token)
     res.status(201).json({ msg: 'User was registered successfully! Please check your email', emailSent });
+   
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json(error.message);
   }
 };
 
-
 exports.logIn = async (req, res) => {
-  const { email, password } = req.body
-
   try {
-    // check if the user exists
-    const foundUser = await User.findOne({ email: email }).lean();
-    if (!foundUser) {
-      return res
-        .status(404)
-        .json({ errMsg: 'User not found, please register!' })
-    }
-    // compare the passwords
-    const passwordIsValid = await bcrypt.compare(password, foundUser.password);
-    if (!passwordIsValid) {
-      return res.status(400).json({ errMsg: 'invalid password!' });
-    }
-
     // send a token with cookies
-    const payload = { id: foundUser._id, email: foundUser.email };
-    const token = jwt.sign(payload, process.env.COOKIE_SECRET, { expiresIn: "1h" });
+    const payload = { id: req.user._id, email: req.user.email };
+    const token = jwt.sign(payload, process.env.COOKIE_SECRET, {
+      expiresIn: '1h',
+    });
     res
       .status(200)
-      .cookie("token_cookie", token, { httpOnly: true, secure: false })
-      .json({ msg: "you successfully logged in!" });
+      .cookie('token_cookie', token, { httpOnly: true, secure: false })
+      .json({ msg: 'you successfully logged in!' });
   } catch (error) {
     console.log(error);
-    res.status(400).json(error);
+    res.status(400).json(error.message);
   }
-
-
 };
 
 exports.verifyUser = async (req, res) => {
