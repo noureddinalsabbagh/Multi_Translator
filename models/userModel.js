@@ -7,7 +7,7 @@ const userSchema = new Schema({
   status: { type: String, enum: ['active', 'pending'], default: 'pending' },
   confirmationCode: { type: String, unique: true },
   languages: { type: [String] },
-  firstTimer: { type: Boolean, default: false },
+
 });
 
 const User = model('User', userSchema);
