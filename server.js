@@ -26,8 +26,10 @@ mongoose
 
 // Routes
 const userRouter = require('./routes/userRoutes');
+const translateRouter = require('./routes/translateRoutes');
 
 app.use('/user', userRouter);
+app.use("/translate", translateRouter)
 
 ///////////////////////
 app.listen(process.env.PORT || port, () => {
