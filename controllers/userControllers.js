@@ -2,6 +2,7 @@ const User = require('../models/userModel');
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const sendEmail = require('../helpers/sendEmail');
 
 exports.register = async (req, res) => {
   try {
@@ -20,7 +21,9 @@ exports.register = async (req, res) => {
       confirmationCode: token,
     });
 
-    res.status(201).json({ msg: 'registered successfully' });
+
+    const emailSent = await sendEmail(userName, email, token)
+    res.status(201).json({ msg: 'User was registered successfully! Please check your email', emailSent });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -58,3 +61,26 @@ exports.logIn = async (req, res) => {
 
 
 };
+
+exports.verifyUser = async (req, res) => {
+  try {
+    const foundUser = await User.findOne({ confirmationCode: req.params.code })
+    if (!foundUser) {
+      return res.status(404).send({ msg: "User Not found." });
+    }
+    foundUser.status = "active"
+    foundUser.save((err) => {
+      if (err) {
+        res.status(500).send({ message: err });
+        return
+      }
+    })
+    return res.status(200).send("you can login right now!")
+
+
+
+  } catch (error) {
+    console.log(error);
+    res.status(400).json(error);
+  }
+}
