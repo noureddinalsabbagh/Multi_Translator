@@ -35,6 +35,7 @@ exports.register = async (req, res) => {
   }
 };
 
+// Login Controller
 exports.logIn = async (req, res) => {
   try {
     // send a token with cookies
@@ -53,6 +54,7 @@ exports.logIn = async (req, res) => {
   }
 };
 
+// verify user Controller
 exports.verifyUser = async (req, res) => {
   try {
     // Find user with the code matching the one sent in verification mail
@@ -74,5 +76,39 @@ exports.verifyUser = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(400).json(error);
+  }
+};
+
+// change account credentials
+
+exports.changeCredentials = async (req, res) => {
+  try {
+    const { userName, email, password, languages } = req.body;
+
+    const foundUser = await User.findById(req.user.id);
+
+    if (userName) foundUser.userName = userName;
+
+    if (email) foundUser.email = email;
+
+    if (password) foundUser.password = password;
+
+    if (languages) foundUser.languages = languages;
+
+    foundUser.save();
+    res.status(200).json(`changes have been saved `);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json(error.message);
+  }
+};
+
+// logout Controller
+
+exports.logout = (req, res) => {
+  try {
+    res.clearCookie('token_cookie').status(200).json({ msg: 'logged out' });
+  } catch (error) {
+    res.status(200).json({ error });
   }
 };
