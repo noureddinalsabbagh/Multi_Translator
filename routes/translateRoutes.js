@@ -1,8 +1,12 @@
 const router = require('express').Router();
 
-const { translateText } = require('../controllers/translateControllers');
+const {
+  translateText,
+  getTranslations,
+} = require('../controllers/translateControllers');
 const cookieValidator = require('../middleware/cookieValidator');
 
+router.post('/translation', cookieValidator, translateText);
+router.get('/quiz', cookieValidator, getTranslations);
 
-router.post("/translation", cookieValidator, translateText)
 module.exports = router;
