@@ -20,7 +20,7 @@ exports.translateText = async (req, res) => {
     translations: convertToObj(languages, translations),
     userId: req.user.id,
   };
-  await Translation.create(translationObj);
+  const translation = await Translation.create(translationObj);
 
-  return res.status(200).json({ text, translations });
+  return res.status(200).json(translation);
 };
