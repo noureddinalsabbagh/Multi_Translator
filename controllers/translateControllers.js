@@ -22,5 +22,5 @@ exports.translateText = async (req, res) => {
   };
   await Translation.create(translationObj);
 
-  return res.status(200).json(translations);
+  return res.status(200).json({ text, translations });
 };
