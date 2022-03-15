@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { sendLoginForm } from '../redux/actions/userActions';
 
 const Login = () => {
@@ -20,22 +21,28 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="loginForm">
-      <label htmlFor="">Your email:</label>
-      <input
-        onChange={(e) => handleChange(e)}
-        type="email"
-        name="email"
-        id="email"
-      />
-      <input
-        onChange={(e) => handleChange(e)}
-        type="password"
-        name="password"
-        id="password"
-      />
-      <button type="submit">submit</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit} className="loginForm">
+        <label htmlFor="">Your email:</label>
+        <input
+          onChange={(e) => handleChange(e)}
+          type="email"
+          name="email"
+          id="email"
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          onChange={(e) => handleChange(e)}
+          type="password"
+          name="password"
+          id="password"
+        />
+        <button type="submit">submit</button>
+      </form>
+      <p>
+        Or register <Link to="/register">here</Link>
+      </p>
+    </>
   );
 };
 

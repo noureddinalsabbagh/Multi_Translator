@@ -2,10 +2,10 @@ const isEmail = require('validator/lib/isEmail');
 
 const validateChangeCreds = (req, res, next) => {
   try {
-    const { userName, email, password, languages } = req.body;
+    const { username, email, password, languages } = req.body;
 
     // check userName length
-    if (userName && userName.length < 6) {
+    if (username && username.length < 6) {
       return res.status(403).json({ errMsg: 'Username is too short' });
     }
     // check email

@@ -5,6 +5,7 @@ const {
   verifyUser,
   logout,
   changeCredentials,
+  isLoggedIn,
 } = require('../controllers/userControllers');
 const validateCreds = require('../middleware/validateCredentials');
 const isAuthenticated = require('../middleware/isAuthenticated');
@@ -31,5 +32,9 @@ router.post(
 
 //logout
 router.get('/logout', logout);
+
+// confirm is logged in
+
+router.get('/isLoggedIn', isLoggedIn);
 
 module.exports = router;
