@@ -4,7 +4,7 @@ const User = require('../models/userModel');
 const cookieValidator = async (req, res, next) => {
   const token = req.cookies.token_cookie;
   if (!token) {
-    return res.status(403).send('Session expired, please login!');
+    return res.status(403).json('Session expired, please login!');
   }
 
   const decodedUser = jwt.verify(token, process.env.COOKIE_SECRET);

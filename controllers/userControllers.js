@@ -6,7 +6,7 @@ const sendEmail = require('../helpers/sendEmail');
 // Register Controller
 exports.register = async (req, res) => {
   try {
-    const { userName, email, password, languages } = req.body;
+    const { username, email, password, languages } = req.body;
     // check if the user exists
     const foundUser = await User.findOne({ email: email }).lean();
     if (foundUser)
@@ -17,7 +17,7 @@ exports.register = async (req, res) => {
     const token = jwt.sign({ email }, process.env.COOKIE_SECRET);
     // create a new user
     const newUser = await User.create({
-      userName,
+      username,
       email: email.toLowerCase(),
       password: hashedPass,
       confirmationCode: token,
@@ -28,7 +28,6 @@ exports.register = async (req, res) => {
     // await sendEmail(userName, email, token);
     res.status(201).json({
       msg: 'User was registered successfully! Please check your email',
-      newUser,
     });
   } catch (error) {
     res.status(500).json(error.message);
@@ -75,7 +74,7 @@ exports.verifyUser = async (req, res) => {
     return res.status(200).send('you can login right now!');
   } catch (error) {
     console.log(error);
-    res.status(400).json(error);
+    res.status(400).json(error.message);
   }
 };
 
@@ -109,6 +108,20 @@ exports.logout = (req, res) => {
   try {
     res.clearCookie('token_cookie').status(200).json({ msg: 'logged out' });
   } catch (error) {
-    res.status(200).json({ error });
+    res.status(500).json(error.message);
+  }
+};
+
+// confirm user is logged in
+
+exports.isLoggedIn = (req, res) => {
+  try {
+    const token = req.cookies.token_cookie;
+    if (!token) {
+      return res.status(403).json({ isLoggedIn: false });
+    }
+    return res.status(200).json({ isLoggedIn: true });
+  } catch (error) {
+    res.status(500).json(error.message);
   }
 };
