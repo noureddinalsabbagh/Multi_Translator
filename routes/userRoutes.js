@@ -35,6 +35,6 @@ router.get('/logout', logout);
 
 // confirm is logged in
 
-router.get('/isLoggedIn', isLoggedIn);
+router.get('/isloggedin', isLoggedIn);
 
 module.exports = router;

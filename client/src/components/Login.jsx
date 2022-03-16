@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { sendLoginForm } from '../redux/actions/userActions';
 
 const Login = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
-  // const state = useSelector((state) => state.userReducer);
+  const state = useSelector((state) => state.userReducer);
 
   const [userCreds, setUserCreds] = useState({ email: '', password: '' });
 
@@ -18,8 +19,13 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(sendLoginForm(userCreds));
-  };
 
+  };
+  useEffect(() => {
+    if (state.isLoggedIn) {
+      navigate("/home")
+    }
+  }, [])
   return (
     <>
       <form onSubmit={handleSubmit} className="loginForm">
