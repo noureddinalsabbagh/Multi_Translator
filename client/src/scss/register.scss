@@ -127,7 +127,11 @@
 
     &__submit {
       width: 400px;
-      font-size: vars.$fontSizePad;
+
+      font: {
+        size: vars.$fontSizePad;
+        weight: 400;
+      }
     }
   }
 }
@@ -157,7 +161,6 @@
       &__submit {
         width: 500px;
         font: {
-          weight: 400;
           size: vars.$fontSizePc;
         }
       }

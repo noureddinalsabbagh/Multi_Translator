@@ -1,117 +1,120 @@
-@use "./abstracts/mixins" as mix;
-@use "./abstracts/variables" as vars;
+@use './abstracts/mixins' as mix;
+@use './abstracts/variables' as vars;
 
 .loginContainer {
-    height: 100vh;
-    @include mix.flexBox(row, center, center);
-    background-color: vars.$bgColor;
+  height: 100vh;
+  @include mix.flexBox(row, center, center);
+  background-color: vars.$bgColor;
 }
 .imageLogin {
-    width: 300px;
-    z-index: 1;
-    display: none;
+  width: 300px;
+  z-index: 1;
+  display: none;
 }
 .loginForm {
-    height: 100%;
-    background-color: vars.$bgColor;
-    @include mix.flexBox(column, center, center);
+  height: 100%;
+  background-color: vars.$bgColor;
+  @include mix.flexBox(column, center, center);
+  font: {
+    family: vars.$mainFont;
+    size: vars.$fontSizeMob;
+  }
+  & * {
+    margin-bottom: 20px;
+  }
+  &__label {
+    letter-spacing: 3px;
+    margin: 10px 10px;
+  }
+  &__input {
+    width: 300px;
+    padding: 5px;
+    border-radius: vars.$borderRadius;
+    border: 0.5px lightgray solid;
+    box-shadow: 1px 1px 3px #dcdcdc, -1px -1px 3px #e4e4e4;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__text {
+    max-width: 300px;
+    margin: 20px 0 0;
+    text-align: center;
+    & a {
+      color: vars.$buttonColor;
+    }
+  }
+  &__submit {
+    width: 300px;
+    margin-top: 10px;
+    padding: 2px;
+    border-radius: vars.$borderRadius;
+    border: none;
+    box-shadow: 1px 1px 3px #dcdcdc, -1px -1px 3px #e4e4e4;
+    background-color: vars.$buttonColor;
+    color: white;
     font: {
-        family: vars.$mainFont;
-        size: vars.$fontSizeMob;
-    }
-    & * {
-        margin-bottom: 20px;
-    }
-    &__label {
-        letter-spacing: 3px;
-        margin: 10px 10px;
-    }
-    &__input {
-        width: 300px;
-        padding: 5px;
-        border-radius: vars.$borderRadius;
-        border: 0.5px lightgray solid;
-        box-shadow: 1px 1px 3px #dcdcdc, -1px -1px 3px #e4e4e4;
-
-        &:focus {
-            outline: none;
-        }
+      family: vars.$mainFont;
+      weight: bold;
+      size: vars.$fontSizeMob;
     }
 
-    &__text {
-        max-width: 300px;
-        margin: 20px 0 0;
-        text-align: center;
-        & a {
-            color: vars.$buttonColor;
-        }
+    &:hover {
+      background-color: darken((vars.$buttonColor), 10%);
+      transition: 0.5s;
     }
-    &__submit {
-        width: 300px;
-        margin-top: 10px;
-        padding: 2px;
-        border-radius: vars.$borderRadius;
-        border: none;
-        box-shadow: 1px 1px 3px #dcdcdc, -1px -1px 3px #e4e4e4;
-        background-color: vars.$buttonColor;
-        color: white;
-        font: {
-            family: vars.$mainFont;
-            weight: bold;
-            size: vars.$fontSizeMob;
-        }
-
-        &:hover {
-            background-color: darken((vars.$buttonColor), 10%);
-            transition: 0.5s;
-        }
-    }
+  }
 }
 // Ipad Break point
 
 @media screen and (min-width: 790px) {
-    .imageLogin {
-        width: 400px;
-        display: block;
-        margin-right: 75px;
+  .imageLogin {
+    width: 400px;
+    display: block;
+    margin-right: 75px;
+  }
+
+  .loginForm {
+    font-size: vars.$fontSizePad;
+
+    &__input {
+      width: 400px;
+      padding: 15px;
     }
 
-    .loginForm {
-        font-size: vars.$fontSizePad;
-
-        &__input {
-            width: 400px;
-            padding: 15px;
-        }
-
-        &__text {
-            max-width: 400px;
-        }
-
-        &__submit {
-            width: 400px;
-            font-size: vars.$fontSizePad;
-        }
+    &__text {
+      max-width: 400px;
     }
+
+    &__submit {
+      width: 400px;
+      font-size: vars.$fontSizePad;
+    }
+  }
 }
 // big screens break point
 
 @media screen and (min-width: 1100px) {
-    .imageLogin {
-        width: 500px;
-        display: block;
-        margin-right: 250px;
+  .imageLogin {
+    width: 500px;
+    display: block;
+    margin-right: 250px;
+  }
+
+  .loginForm {
+    font-size: vars.$fontSizePc;
+    &__input {
+      width: 500px;
     }
 
-    .loginForm {
-        font-size: vars.$fontSizePc;
-        &__input {
-            width: 500px;
-        }
-
-        &__submit {
-            width: 500px;
-            font-weight: 400;
-        }
+    &__submit {
+      width: 500px;
+      font: {
+        weight: 400;
+        size: vars.$fontSizePc;
+      }
     }
+  }
 }

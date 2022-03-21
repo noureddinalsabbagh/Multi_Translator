@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { sendLoginForm } from "../redux/actions/userActions";
-import SVG from "../images/login.svg";
-import { motion } from "framer-motion";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { sendLoginForm } from '../redux/actions/userActions';
+import SVG from '../images/login.svg';
+import { motion } from 'framer-motion';
 import {
   buttonVariants,
   fadeInVariants,
   inputLeftVariants,
   inputRightVariants,
-} from "../animation/formAnimations";
+} from '../animation/formAnimations';
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.userReducer);
 
-  const [userCreds, setUserCreds] = useState({ email: "", password: "" });
+  const [userCreds, setUserCreds] = useState({ email: '', password: '' });
 
   // Handle input change
   const handleChange = (e) => {
@@ -30,7 +30,7 @@ const Login = () => {
   };
   useEffect(() => {
     if (state.isLoggedIn) {
-      navigate("/home");
+      navigate('/home');
     }
   }, []);
   return (
@@ -91,7 +91,7 @@ const Login = () => {
             initial="hidden"
             animate="visible"
           >
-            submit
+            Submit
           </motion.button>
           <motion.p
             className="loginForm__text"
