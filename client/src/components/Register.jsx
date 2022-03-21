@@ -51,7 +51,7 @@ const Register = () => {
   return (
     <div className="registerContainer">
       <motion.img
-        className="image"
+        className="imageRegister"
         src={SVG}
         alt="alt"
         variants={fadeInVariants}

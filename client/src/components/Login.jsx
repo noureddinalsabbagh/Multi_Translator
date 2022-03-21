@@ -37,7 +37,7 @@ const Login = () => {
     <>
       <div className="loginContainer">
         <motion.img
-          className="image"
+          className="imageLogin"
           src={SVG}
           alt="login_photo"
           variants={fadeInVariants}
