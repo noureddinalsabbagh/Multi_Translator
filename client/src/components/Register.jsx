@@ -10,7 +10,7 @@ import {
   inputLeftVariants,
   inputRightVariants,
   buttonVariants,
-} from '../animation/register';
+} from '../animation/formAnimations';
 
 const Register = () => {
   const dispatch = useDispatch();
