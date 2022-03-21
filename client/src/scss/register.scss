@@ -142,6 +142,7 @@
   }
 
   .registerForm {
+    font-size: vars.$fontSizePc;
     &__input {
       width: 500px;
     }
@@ -156,7 +157,10 @@
 
     &__submit {
       width: 500px;
-      font-weight: 400;
+      font: {
+        weight: 400;
+        size: vars.$fontSizePc;
+      }
     }
   }
 }
