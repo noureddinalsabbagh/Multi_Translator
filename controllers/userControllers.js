@@ -97,7 +97,6 @@ exports.changeCredentials = async (req, res) => {
     foundUser.save();
     res.status(200).json(`changes have been saved `);
   } catch (error) {
-    console.log(error.message);
     res.status(500).json(error.message);
   }
 };

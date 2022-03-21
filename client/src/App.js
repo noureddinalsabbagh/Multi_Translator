@@ -6,21 +6,21 @@ import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
 import Quiz from './components/Quiz';
 import Home from './components/Home';
-
+import AccountSettings from './components/AccountSettings';
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/home" element={<PrivateRoute outlet={<Home />} />} />
-
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/confirm/:code" element={<Welcome />} />
+        <Route path="/home" element={<PrivateRoute outlet={<Home />} />} />
         <Route path="/quiz" element={<PrivateRoute outlet={<Quiz />} />} />
-
-
-
+        <Route
+          path="/account"
+          element={<PrivateRoute outlet={<AccountSettings />} />}
+        />
       </Routes>
     </div>
   );
