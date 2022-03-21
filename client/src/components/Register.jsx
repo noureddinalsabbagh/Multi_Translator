@@ -2,11 +2,21 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { sendRegisterForm } from '../redux/actions/userActions';
 import { Link } from 'react-router-dom';
+import SVG from '../images/undraw_profile_details_re_ch9r.svg';
+//Animation Imports
+import { motion } from 'framer-motion';
+import {
+  fadeInVariants,
+  inputLeftVariants,
+  inputRightVariants,
+  buttonVariants,
+} from '../animation/register';
 
 const Register = () => {
   const dispatch = useDispatch();
   // const state = useSelector((state) => state.userReducer);
 
+  // user credentials state
   const [userCreds, setUserCreds] = useState({
     username: '',
     email: '',
@@ -22,9 +32,13 @@ const Register = () => {
 
   // Handle input change (languages)
   const handleLangsChange = (e) => {
+    let updatedLanguages = [...userCreds.languages];
+    e.target.checked
+      ? (updatedLanguages = [...updatedLanguages, e.target.value])
+      : updatedLanguages.splice(userCreds.languages.indexOf(e.target.value), 1);
     setUserCreds({
       ...userCreds,
-      languages: [...userCreds.languages, e.target.value],
+      languages: updatedLanguages,
     });
   };
 
@@ -35,17 +49,31 @@ const Register = () => {
     dispatch(sendRegisterForm(userCreds));
   };
   return (
-    <>
+    <div className="registerContainer">
+      <motion.img
+        className="image"
+        src={SVG}
+        alt="alt"
+        variants={fadeInVariants}
+        initial="hidden"
+        animate="visible"
+      />
       <form
         className="registerForm"
         onSubmit={(e) => {
           handleSubmit(e);
         }}
       >
-        <label className="registerForm__label" htmlFor="username">
+        <motion.label
+          className="registerForm__label"
+          htmlFor="username"
+          variants={fadeInVariants}
+          initial="hidden"
+          animate="visible"
+        >
           Username
-        </label>
-        <input
+        </motion.label>
+        <motion.input
           name="username"
           className="registerForm__input"
           type="text"
@@ -53,12 +81,21 @@ const Register = () => {
           onChange={(e) => {
             handleCredsChange(e);
           }}
+          variants={inputLeftVariants}
+          initial="hidden"
+          animate="visible"
         />
 
-        <label className="registerForm__label" htmlFor="email">
+        <motion.label
+          className="registerForm__label"
+          htmlFor="email"
+          variants={fadeInVariants}
+          initial="hidden"
+          animate="visible"
+        >
           Email
-        </label>
-        <input
+        </motion.label>
+        <motion.input
           name="email"
           className="registerForm__input"
           type="text"
@@ -66,12 +103,21 @@ const Register = () => {
           onChange={(e) => {
             handleCredsChange(e);
           }}
+          variants={inputRightVariants}
+          initial="hidden"
+          animate="visible"
         />
 
-        <label className="registerForm__label" htmlFor="password">
+        <motion.label
+          className="registerForm__label"
+          htmlFor="password"
+          variants={fadeInVariants}
+          initial="hidden"
+          animate="visible"
+        >
           Password
-        </label>
-        <input
+        </motion.label>
+        <motion.input
           name="password"
           className="registerForm__input"
           type="password"
@@ -79,126 +125,185 @@ const Register = () => {
           onChange={(e) => {
             handleCredsChange(e);
           }}
+          variants={inputLeftVariants}
+          initial="hidden"
+          animate="visible"
         />
 
-        <p>Choose languages you are interested in</p>
+        <motion.p
+          className="registerForm__text"
+          variants={fadeInVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          Choose your preferred languages
+        </motion.p>
+        <motion.div
+          className="registerForm__languages"
+          variants={fadeInVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <label className="registerForm__langLable" htmlFor="de">
+            🇩🇪 DE
+          </label>
+          <input
+            className="registerForm__checkbox"
+            type="checkbox"
+            name="de"
+            id="de"
+            value="de"
+            onChange={(e) => {
+              handleLangsChange(e);
+            }}
+          />
 
-        <label htmlFor="de">German</label>
-        <input
-          type="checkbox"
-          name="de"
-          id="de"
-          value="de"
-          onChange={(e) => {
-            handleLangsChange(e);
-          }}
+          <label className="registerForm__langLable" htmlFor="es">
+            🇪🇸 ES
+          </label>
+          <input
+            className="registerForm__checkbox"
+            type="checkbox"
+            name="es"
+            id="es"
+            value="es"
+            onChange={(e) => {
+              handleLangsChange(e);
+            }}
+          />
+
+          <label className="registerForm__langLable" htmlFor="ar">
+            🇸🇦 AR
+          </label>
+          <input
+            className="registerForm__checkbox"
+            type="checkbox"
+            name="ar"
+            id="ar"
+            value="ar"
+            onChange={(e) => {
+              handleLangsChange(e);
+            }}
+          />
+
+          <label className="registerForm__langLable" htmlFor="tr">
+            🇹🇷 TR
+          </label>
+          <input
+            className="registerForm__checkbox"
+            type="checkbox"
+            name="tr"
+            id="tr"
+            value="tr"
+            onChange={(e) => {
+              handleLangsChange(e);
+            }}
+          />
+
+          <label className="registerForm__langLable" htmlFor="it">
+            🇮🇹 IT
+          </label>
+          <input
+            className="registerForm__checkbox"
+            type="checkbox"
+            name="it"
+            id="it"
+            value="it"
+            onChange={(e) => {
+              handleLangsChange(e);
+            }}
+          />
+
+          <label className="registerForm__langLable" htmlFor="pt">
+            🇵🇹 PT
+          </label>
+          <input
+            className="registerForm__checkbox"
+            type="checkbox"
+            name="pt"
+            id="pt"
+            value="pt"
+            onChange={(e) => {
+              handleLangsChange(e);
+            }}
+          />
+
+          <label className="registerForm__langLable" htmlFor="jp">
+            🇯🇵 JP
+          </label>
+          <input
+            className="registerForm__checkbox"
+            type="checkbox"
+            name="jp"
+            id="jp"
+            value="jp"
+            onChange={(e) => {
+              handleLangsChange(e);
+            }}
+          />
+
+          <label className="registerForm__langLable" htmlFor="el">
+            🇬🇷 Greek
+          </label>
+          <input
+            className="registerForm__checkbox"
+            type="checkbox"
+            name="el"
+            id="el"
+            value="el"
+            onChange={(e) => {
+              handleLangsChange(e);
+            }}
+          />
+
+          <label className="registerForm__langLable" htmlFor="he">
+            🇮🇱 He
+          </label>
+          <input
+            className="registerForm__checkbox"
+            type="checkbox"
+            name="he"
+            id="he"
+            value="he"
+            onChange={(e) => {
+              handleLangsChange(e);
+            }}
+          />
+
+          <label className="registerForm__langLable" htmlFor="ru">
+            {' '}
+            🇷🇺 Rus
+          </label>
+          <input
+            className="registerForm__checkbox"
+            type="checkbox"
+            name="ru"
+            id="ru"
+            value="ru"
+            onChange={(e) => {
+              handleLangsChange(e);
+            }}
+          />
+        </motion.div>
+
+        <motion.input
+          className="registerForm__submit"
+          type="submit"
+          value="Register"
+          variants={buttonVariants}
+          initial="hidden"
+          animate="visible"
         />
-
-        <label htmlFor="sp">Spanish</label>
-        <input
-          type="checkbox"
-          name="sp"
-          id="sp"
-          value="sp"
-          onChange={(e) => {
-            handleLangsChange(e);
-          }}
-        />
-
-        <label htmlFor="ar">Arabic</label>
-        <input
-          type="checkbox"
-          name="ar"
-          id="ar"
-          value="ar"
-          onChange={(e) => {
-            handleLangsChange(e);
-          }}
-        />
-
-        <label htmlFor="tr">Turkish</label>
-        <input
-          type="checkbox"
-          name="tr"
-          id="tr"
-          value="tr"
-          onChange={(e) => {
-            handleLangsChange(e);
-          }}
-        />
-
-        <label htmlFor="it">Italian</label>
-        <input
-          type="checkbox"
-          name="it"
-          id="it"
-          value="it"
-          onChange={(e) => {
-            handleLangsChange(e);
-          }}
-        />
-
-        <label htmlFor="pt">Portuguese</label>
-        <input
-          type="checkbox"
-          name="pt"
-          id="pt"
-          value="pt"
-          onChange={(e) => {
-            handleLangsChange(e);
-          }}
-        />
-
-        <label htmlFor="zh">Chinese</label>
-        <input
-          type="checkbox"
-          name="zh"
-          id="zh"
-          value="zh"
-          onChange={(e) => {
-            handleLangsChange(e);
-          }}
-        />
-
-        <label htmlFor="el">Greek</label>
-        <input
-          type="checkbox"
-          name="el"
-          id="el"
-          value="el"
-          onChange={(e) => {
-            handleLangsChange(e);
-          }}
-        />
-
-        <label htmlFor="he">Hebrew</label>
-        <input
-          type="checkbox"
-          name="he"
-          id="he"
-          value="he"
-          onChange={(e) => {
-            handleLangsChange(e);
-          }}
-        />
-
-        <label htmlFor="ru">Russian</label>
-        <input
-          type="checkbox"
-          name="ru"
-          id="ru"
-          value="ru"
-          onChange={(e) => {
-            handleLangsChange(e);
-          }}
-        />
-
-        <input type="submit" value="Register" />
+        <motion.p
+          className="registerForm__text"
+          variants={fadeInVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          Registered already? <Link to="/login">Login</Link>
+        </motion.p>
       </form>
-      <p>
-        Registered already? <Link to="/login">Log in</Link>
-      </p>
-    </>
+    </div>
   );
 };
 
