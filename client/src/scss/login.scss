@@ -12,7 +12,7 @@
     display: none;
 }
 .loginForm {
-    height: 100vh;
+    height: 100%;
     background-color: vars.$bgColor;
     @include mix.flexBox(column, center, center);
     font: {
@@ -76,7 +76,7 @@
         margin-right: 75px;
     }
 
-    .registerForm {
+    .loginForm {
         font-size: vars.$fontSizePad;
 
         &__input {
@@ -98,12 +98,12 @@
 
 @media screen and (min-width: 1100px) {
     .image {
-        width: 250px;
+        width: 300px;
         display: block;
-        margin-right: 300px;
+        margin-right: 250px;
     }
 
-    .registerForm {
+    .loginForm {
         &__input {
             width: 500px;
         }
