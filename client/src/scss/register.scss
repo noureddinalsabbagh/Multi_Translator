@@ -139,9 +139,9 @@
         width: 300px;
         display: block;
         margin-right: 300px;
-    }
 
     .registerForm {
+      font-size: vars.$fontSizePc;
         &__input {
             width: 500px;
         }
@@ -154,9 +154,12 @@
             transform: scale(1.2);
         }
 
-        &__submit {
-            width: 500px;
-            font-weight: 400;
-        }
+    &__submit {
+      width: 500px;
+      font: {
+        weight: 400;
+        size: vars.$fontSizePc;
+      }
+
     }
 }
