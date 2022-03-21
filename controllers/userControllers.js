@@ -64,14 +64,11 @@ exports.verifyUser = async (req, res) => {
 
     // update user status if code sent from from end matches the one in the document
     foundUser.status = 'active';
-    foundUser.save((err) => {
-      if (err) {
-        res.status(500).send({ message: err });
-        return;
-      }
-    });
+    foundUser.save();
 
-    return res.status(200).send('you can login right now!');
+    return res
+      .status(200)
+      .send({ msg: 'Account successfully verified. You can login right now!' });
   } catch (error) {
     console.log(error);
     res.status(400).json(error.message);
