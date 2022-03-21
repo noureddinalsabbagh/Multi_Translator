@@ -6,7 +6,7 @@
     @include mix.flexBox(row, center, center);
     background-color: vars.$bgColor;
 }
-.image {
+.imageLogin {
     width: 300px;
     z-index: 1;
     display: none;
@@ -70,8 +70,8 @@
 // Ipad Break point
 
 @media screen and (min-width: 790px) {
-    .image {
-        width: 280px;
+    .imageLogin {
+        width: 400px;
         display: block;
         margin-right: 75px;
     }
@@ -97,13 +97,14 @@
 // big screens break point
 
 @media screen and (min-width: 1100px) {
-    .image {
-        width: 300px;
+    .imageLogin {
+        width: 500px;
         display: block;
         margin-right: 250px;
     }
 
     .loginForm {
+        font-size: vars.$fontSizePc;
         &__input {
             width: 500px;
         }
