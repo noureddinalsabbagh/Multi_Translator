@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { sendRegisterForm } from '../redux/actions/userActions';
 import { Link } from 'react-router-dom';
+import creatCheckbox from '../helpers/createCheckbox';
 import SVG from '../images/undraw_profile_details_re_ch9r.svg';
 //Animation Imports
 import { motion } from 'framer-motion';
@@ -144,146 +145,16 @@ const Register = () => {
           initial="hidden"
           animate="visible"
         >
-          <label className="registerForm__langLable" htmlFor="de">
-            🇩🇪 DE
-          </label>
-          <input
-            className="registerForm__checkbox"
-            type="checkbox"
-            name="de"
-            id="de"
-            value="de"
-            onChange={(e) => {
-              handleLangsChange(e);
-            }}
-          />
-
-          <label className="registerForm__langLable" htmlFor="es">
-            🇪🇸 ES
-          </label>
-          <input
-            className="registerForm__checkbox"
-            type="checkbox"
-            name="es"
-            id="es"
-            value="es"
-            onChange={(e) => {
-              handleLangsChange(e);
-            }}
-          />
-
-          <label className="registerForm__langLable" htmlFor="ar">
-            🇸🇦 AR
-          </label>
-          <input
-            className="registerForm__checkbox"
-            type="checkbox"
-            name="ar"
-            id="ar"
-            value="ar"
-            onChange={(e) => {
-              handleLangsChange(e);
-            }}
-          />
-
-          <label className="registerForm__langLable" htmlFor="tr">
-            🇹🇷 TR
-          </label>
-          <input
-            className="registerForm__checkbox"
-            type="checkbox"
-            name="tr"
-            id="tr"
-            value="tr"
-            onChange={(e) => {
-              handleLangsChange(e);
-            }}
-          />
-
-          <label className="registerForm__langLable" htmlFor="it">
-            🇮🇹 IT
-          </label>
-          <input
-            className="registerForm__checkbox"
-            type="checkbox"
-            name="it"
-            id="it"
-            value="it"
-            onChange={(e) => {
-              handleLangsChange(e);
-            }}
-          />
-
-          <label className="registerForm__langLable" htmlFor="pt">
-            🇵🇹 PT
-          </label>
-          <input
-            className="registerForm__checkbox"
-            type="checkbox"
-            name="pt"
-            id="pt"
-            value="pt"
-            onChange={(e) => {
-              handleLangsChange(e);
-            }}
-          />
-
-          <label className="registerForm__langLable" htmlFor="jp">
-            🇯🇵 JP
-          </label>
-          <input
-            className="registerForm__checkbox"
-            type="checkbox"
-            name="jp"
-            id="jp"
-            value="jp"
-            onChange={(e) => {
-              handleLangsChange(e);
-            }}
-          />
-
-          <label className="registerForm__langLable" htmlFor="el">
-            🇬🇷 Greek
-          </label>
-          <input
-            className="registerForm__checkbox"
-            type="checkbox"
-            name="el"
-            id="el"
-            value="el"
-            onChange={(e) => {
-              handleLangsChange(e);
-            }}
-          />
-
-          <label className="registerForm__langLable" htmlFor="he">
-            🇮🇱 He
-          </label>
-          <input
-            className="registerForm__checkbox"
-            type="checkbox"
-            name="he"
-            id="he"
-            value="he"
-            onChange={(e) => {
-              handleLangsChange(e);
-            }}
-          />
-
-          <label className="registerForm__langLable" htmlFor="ru">
-            {' '}
-            🇷🇺 Rus
-          </label>
-          <input
-            className="registerForm__checkbox"
-            type="checkbox"
-            name="ru"
-            id="ru"
-            value="ru"
-            onChange={(e) => {
-              handleLangsChange(e);
-            }}
-          />
+          {creatCheckbox('de', '🇩🇪 DE', (e) => handleLangsChange(e))}
+          {creatCheckbox('es', '🇪🇸 ES', (e) => handleLangsChange(e))}
+          {creatCheckbox('ar', '🇸🇦 AR', (e) => handleLangsChange(e))}
+          {creatCheckbox('tr', '🇹🇷 TR', (e) => handleLangsChange(e))}
+          {creatCheckbox('it', '🇮🇹 IT', (e) => handleLangsChange(e))}
+          {creatCheckbox('pt', '🇵🇹 PT', (e) => handleLangsChange(e))}
+          {creatCheckbox('jp', '🇯🇵 JP', (e) => handleLangsChange(e))}
+          {creatCheckbox('el', '🇬🇷 EL', (e) => handleLangsChange(e))}
+          {creatCheckbox('he', '🇮🇱 He', (e) => handleLangsChange(e))}
+          {creatCheckbox('ru', '🇷🇺 Rus', (e) => handleLangsChange(e))}
         </motion.div>
 
         <motion.input
