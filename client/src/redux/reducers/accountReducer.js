@@ -32,8 +32,8 @@ const accountReducer = (state = INITIAL_STATE, action) => {
       const restLanguages = state.restLangs.filter((item, index) => index !== action.payload)
       return { ...state, user: { ...state.user, languages: [...state.user.languages, additionLang] }, restLangs: [...restLanguages] }
 
-    case "UPDATE_CREDS":
-      return { ...state, user: { ...state.user, username: action.payload.username, email: action.payload.email } }
+    // case "UPDATE_CREDS":
+    //  return { ...state, user: { ...state.user, username: action.payload.username, email: action.payload.email } }
     default:
       return state;
   }
