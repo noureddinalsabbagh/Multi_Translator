@@ -25,7 +25,7 @@ exports.register = async (req, res) => {
     });
 
     // Send verification email
-    // await sendEmail(userName, email, token);
+    // await sendEmail(username, email, token);
     res.status(201).json({
       msg: 'User was registered successfully! Please check your email',
     });
@@ -75,19 +75,31 @@ exports.verifyUser = async (req, res) => {
   }
 };
 
+exports.sendUserCreds = async (req, res) => {
+  const user = req.user
+  try {
+    return res.status(200).json({ user })
+  } catch (error) {
+    return res.status(400).json({ errMsg: error.message })
+  }
+}
 // change account credentials
-
 exports.changeCredentials = async (req, res) => {
   try {
-    const { userName, email, password, languages } = req.body;
+    const { username, email, password, newPassword, languages } = req.body;
 
     const foundUser = await User.findById(req.user.id);
 
-    if (userName) foundUser.userName = userName;
+    if (username) foundUser.username = username;
 
     if (email) foundUser.email = email;
 
-    if (password) foundUser.password = password;
+
+    if (newPassword) {
+      // hash Password
+      const hashedPass = await bcrypt.hash(newPassword, 10)
+      foundUser.password = hashedPass;
+    }
 
     if (languages) foundUser.languages = languages;
 
@@ -99,7 +111,6 @@ exports.changeCredentials = async (req, res) => {
 };
 
 // logout Controller
-
 exports.logout = (req, res) => {
   try {
     res.clearCookie('token_cookie').status(200).json({ msg: 'logged out' });
@@ -109,7 +120,6 @@ exports.logout = (req, res) => {
 };
 
 // confirm user is logged in
-
 exports.isLoggedIn = (req, res) => {
   try {
     const token = req.cookies.token_cookie;

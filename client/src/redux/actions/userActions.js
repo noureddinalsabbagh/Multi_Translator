@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// to send login form
 export const sendLoginForm = (userCreds) => async (dispatch) => {
   dispatch({ type: 'SEND_LOGIN_START' });
   try {
@@ -14,6 +15,7 @@ export const sendLoginForm = (userCreds) => async (dispatch) => {
   }
 };
 
+// to send register form
 export const sendRegisterForm = (userCreds) => async (dispatch) => {
   dispatch({ type: 'SEND_REGISTER_START' });
 
@@ -54,3 +56,19 @@ export const checkIsLoggedIn = () => async (dispatch) => {
     dispatch({ type: 'GET_ISLOGGEDIN_ERROR', payload: error.message });
   }
 };
+
+// to update user credentials
+export const sendNewCreds = (userCreds) => async (dispatch) => {
+  dispatch({ type: 'SEND_NEWCREDS_START' });
+  try {
+    const res = await axios.post(
+      'http://localhost:4001/user/account',
+      userCreds,
+      { withCredentials: true }
+    );
+    dispatch({ type: 'SEND_NEWCREDS_SUCCESS', payload: res.data });
+  } catch (error) {
+    dispatch({ type: 'SEND_NEWCREDS_ERROR', payload: error.message });
+  }
+};
+

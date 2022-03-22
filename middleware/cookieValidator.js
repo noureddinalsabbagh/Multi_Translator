@@ -9,7 +9,7 @@ const cookieValidator = async (req, res, next) => {
 
   const decodedUser = jwt.verify(token, process.env.COOKIE_SECRET);
   const id = decodedUser.id;
-  const user = await User.findById(id);
+  const user = await User.findById(id).select(" -status -confirmationCode -__v");
 
   if (!user) {
     return res.status(401).json({ msg: 'user is not found' });

@@ -6,6 +6,7 @@ const {
   logout,
   changeCredentials,
   isLoggedIn,
+  sendUserCreds,
 } = require('../controllers/userControllers');
 const validateCreds = require('../middleware/validateCredentials');
 const isAuthenticated = require('../middleware/isAuthenticated');
@@ -21,8 +22,10 @@ router.post('/login', isAuthenticated, logIn);
 // confirm code after mail verification
 router.get('/confirm/:code', verifyUser);
 
-// change account credentials
+// send user creds for settings page
+router.get("/userCreds", cookieValidator, sendUserCreds)
 
+// change account credentials
 router.post(
   '/account',
   cookieValidator,
@@ -34,7 +37,8 @@ router.post(
 router.get('/logout', logout);
 
 // confirm is logged in
-
 router.get('/isloggedin', isLoggedIn);
+
+
 
 module.exports = router;
