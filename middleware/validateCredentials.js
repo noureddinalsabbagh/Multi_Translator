@@ -4,7 +4,7 @@ const validateCreds = (req, res, next) => {
   try {
     const { username, email, password, languages } = req.body;
 
-    // check userName length
+    // check username length
     if (username.length < 6) {
       return res.status(403).json({ errMsg: 'Username is too short' });
     }

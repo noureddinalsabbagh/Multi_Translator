@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
   isLoading: true,
-  data: [],
+  data: {},
   message: '',
   error: '',
   isLoggedIn: false,
@@ -54,6 +54,21 @@ const userReducer = (state = INITIAL_STATE, action) => {
         isLoading: false,
         error: action.payload,
       };
+
+    // to update user creds
+    case 'SEND_NEWCREDS_START':
+      return state;
+    case 'SEND_NEWCREDS_SUCCESS':
+      return {
+        ...state,
+        message: action.payload,
+        isLoading: false,
+        isLoggedIn: true,
+      };
+    case 'SEND_NEWCREDS_ERROR':
+      return { ...state, error: action.payload, isLoading: false };
+
+
     default:
       return state;
   }
