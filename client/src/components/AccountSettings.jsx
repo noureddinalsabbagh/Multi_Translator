@@ -17,37 +17,29 @@ const AccountSettings = () => {
 
   const [isDisabled, setIsDisabled] = useState({ usernameInput: true, emailInput: true, passwordInput: false }
   )
-  const [newUserCreds, setNewUserCreds] = useState({ username: "", email: "", password: "", newPassword: "" })
-
 
   const handleOnChange = (e) => {
-    setNewUserCreds({ ...newUserCreds, [e.target.name]: e.target.value })
-    // console.log(newUserCreds);
-    // dispatch(updUsernameAndEmail(newUserCreds))
+    dispatch(updUsernameAndEmail({ [e.target.name]: e.target.value }))
   }
-
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const newCreds = { ...newUserCreds, languages: user.languages }
-    dispatch(sendNewCreds(newCreds))
+    dispatch(sendNewCreds(user))
   }
-
-
 
   return <>
     <form onSubmit={handleSubmit}>
 
       <div>
         <label htmlFor="">username<input onChange={handleOnChange} type="text" name="username" id="username" disabled={isDisabled.usernameInput}
-        // value={user.username}
+          value={user.username}
         /></label>
         <input onClick={() => setIsDisabled({ ...isDisabled, usernameInput: !isDisabled.usernameInput })} type="button" value="Edit" />
       </div>
 
       <div>
         <label htmlFor="">email<input onChange={handleOnChange} disabled={isDisabled.emailInput} type="text" name="email" id="email"
-        // value={user.email}
+          value={user.email}
         /></label>
         <input onClick={() => setIsDisabled({ ...isDisabled, emailInput: !isDisabled.emailInput })} type="button" value="edit" />
       </div>

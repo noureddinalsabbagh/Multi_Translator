@@ -24,6 +24,6 @@ export const addLanguage = (index) => {
 }
 
 // to update username and email of usernama
-export const updUsernameAndEmail = (creds) => {
-  return { type: "UPDATE_CREDS", payload: creds }
+export const updUsernameAndEmail = (obj) => {
+  return { type: "UPDATE_CREDS", payload: obj }
 }
