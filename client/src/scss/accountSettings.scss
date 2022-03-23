@@ -1,0 +1,156 @@
+@use './abstracts/mixins' as mix;
+@use './abstracts/variables' as vars;
+
+.settingsContainer {
+  height: vars.$fullScreen;
+  background-color: vars.$bgColor;
+  @include mix.flexBox(row, space-around, center);
+}
+
+.settingsImg {
+  width: 300px;
+  display: none;
+  z-index: 1;
+}
+
+.settingsForm {
+  height: 100%;
+  padding: 0 5px;
+  @include mix.flexBox(column, center, center);
+  font: {
+    family: vars.$mainFont;
+    size: vars.$fontSizeMob;
+  }
+
+  &__label {
+    letter-spacing: vars.$letterSpacing;
+  }
+
+  &__input {
+    margin: 0 7px;
+    padding: 6px;
+    border: vars.$inputBorder;
+    border-radius: vars.$borderRadius;
+
+    &--pass {
+      width: 260px;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__text {
+    margin: 5px 0;
+    letter-spacing: vars.$letterSpacing;
+
+    &:first-of-type {
+      cursor: pointer;
+      color: vars.$buttonColor;
+    }
+  }
+
+  &__langsDiv {
+    max-width: 200px;
+    letter-spacing: vars.$letterSpacing;
+    @include mix.flexBox(row, flex-start, center);
+    text-align: center;
+    flex-wrap: wrap;
+  }
+  &__span {
+    width: 40px;
+    margin: 0 10px;
+    color: vars.$buttonColor;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+      background-color: vars.$buttonColor;
+      border-radius: vars.$borderRadius;
+      color: white;
+      transition: 0.5s;
+    }
+  }
+  &__button {
+    width: 75px;
+    padding: 2px 6px;
+    font-size: vars.$fontSizeMob;
+    margin: 10px 0 0 0;
+    background-color: vars.$buttonColor;
+    color: white;
+    border-radius: vars.$borderRadius;
+    &:hover {
+      background-color: darken((vars.$buttonColor), 10%);
+      transition: 0.5s;
+    }
+    &--save {
+      width: 200px;
+    }
+  }
+}
+
+// Ipad break point
+
+@media screen and (min-width: 790px) {
+  .settingsImg {
+    width: 350px;
+    display: block;
+  }
+
+  .settingsForm {
+    font-size: vars.$fontSizePad;
+
+    &__input {
+      padding: 10px;
+      width: 300px;
+
+      &--pass {
+        width: 350px;
+      }
+    }
+    &__button {
+      width: 85px;
+      padding: 5px 20px;
+      margin: 10px 10px;
+      font-size: vars.$fontSizePad;
+      &--save {
+        width: 300px;
+      }
+    }
+  }
+}
+
+// big screen break point
+
+@media screen and (min-width: 1100px) {
+  .settingsContainer {
+    justify-content: center;
+  }
+
+  .settingsImg {
+    width: 500px;
+    margin-right: 100px;
+  }
+
+  .settingsForm {
+    font-size: vars.$fontSizePc;
+    margin-left: 200px;
+
+    &__langsDiv {
+      max-width: 400px;
+    }
+
+    &__input {
+      &--pass {
+        width: 400px;
+      }
+    }
+
+    &__button {
+      &--save {
+        width: 350px;
+      }
+    }
+  }
+}

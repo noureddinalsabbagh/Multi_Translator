@@ -40,7 +40,7 @@ exports.logIn = async (req, res) => {
     // send a token with cookies
     const payload = { id: req.user._id, email: req.user.email };
     const token = jwt.sign(payload, process.env.COOKIE_SECRET, {
-      expiresIn: '1h',
+      expiresIn: '5h',
     });
 
     res
@@ -76,13 +76,13 @@ exports.verifyUser = async (req, res) => {
 };
 
 exports.sendUserCreds = async (req, res) => {
-  const user = req.user
+  const user = req.user;
   try {
-    return res.status(200).json({ user })
+    return res.status(200).json({ user });
   } catch (error) {
-    return res.status(400).json({ errMsg: error.message })
+    return res.status(400).json({ errMsg: error.message });
   }
-}
+};
 // change account credentials
 exports.changeCredentials = async (req, res) => {
   try {
@@ -94,10 +94,9 @@ exports.changeCredentials = async (req, res) => {
 
     if (email) foundUser.email = email;
 
-
     if (newPassword) {
       // hash Password
-      const hashedPass = await bcrypt.hash(newPassword, 10)
+      const hashedPass = await bcrypt.hash(newPassword, 10);
       foundUser.password = hashedPass;
     }
 
