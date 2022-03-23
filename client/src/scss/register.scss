@@ -2,7 +2,7 @@
 @use './abstracts/variables' as vars;
 
 .registerContainer {
-  height: 100vh;
+  height: vars.$fullScreen;
   @include mix.flexBox(row, center, center);
   background-color: vars.$bgColor;
 }
@@ -17,15 +17,13 @@
   height: 100%;
   @include mix.flexBox(column, center, center);
   text-align: start;
-  font-family: vars.$mainFont;
-  font-size: vars.$fontSizeMob;
   font: {
     family: vars.$mainFont;
     size: vars.$fontSizeMob;
   }
 
   &__label {
-    letter-spacing: 3px;
+    letter-spacing: vars.$letterSpacing;
     margin: 10px 10px;
   }
 
@@ -33,8 +31,8 @@
     width: 300px;
     padding: 5px;
     border-radius: vars.$borderRadius;
-    border: 0.5px lightgray solid;
-    box-shadow: 1px 1px 3px #dcdcdc, -1px -1px 3px #e4e4e4;
+    border: vars.$inputBorder;
+    box-shadow: vars.$InputShadow;
 
     &:focus {
       outline: none;
@@ -63,6 +61,7 @@
 
     &:hover {
       transform: scale(1.1);
+      transition: 0.5s;
     }
   }
 
@@ -71,7 +70,7 @@
     padding: 5px 20px;
     border-radius: vars.$borderRadius;
     border: none;
-    box-shadow: 1px 1px 3px #dcdcdc, -1px -1px 3px #e4e4e4;
+    box-shadow: vars.$InputShadow;
     background-color: vars.$buttonColor;
     color: white;
     font: {

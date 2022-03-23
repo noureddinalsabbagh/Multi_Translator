@@ -48,3 +48,9 @@ export const buttonVariants = {
     },
   },
 };
+
+export const scaleFrames = {
+  hover: {
+    scale: [1, 1.5, 1, 1.5, 1, 1.5, 1],
+  },
+};
