@@ -1,5 +1,5 @@
 const isEmail = require('validator/lib/isEmail');
-const bcrypt = require("bcrypt")
+const bcrypt = require('bcrypt');
 
 const validateChangeCreds = async (req, res, next) => {
   try {
@@ -13,22 +13,21 @@ const validateChangeCreds = async (req, res, next) => {
     if (email && !isEmail(email)) {
       return res.status(403).json({ errMsg: 'invalid email' });
     }
-    if (password) {
 
+    if (password) {
       const isPasswordTrue = await bcrypt.compare(password, req.user.password);
       if (!isPasswordTrue) {
         return res.status(403).json({ errMsg: 'your password is incorrect' });
-      } else if (isPasswordTrue && newPassword === "") {
+      } else if (isPasswordTrue && newPassword === '') {
         return res.status(403).json({ errMsg: 'you should add new password' });
       }
     }
+
     // check password length
     if (password && newPassword) {
-
       if (newPassword.length < 8) {
         return res.status(403).json({ errMsg: 'Password is too short' });
       }
-
     }
 
     //check if at least one language is chosen

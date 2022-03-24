@@ -23,7 +23,7 @@ router.post('/login', isAuthenticated, logIn);
 router.get('/confirm/:code', verifyUser);
 
 // send user creds for settings page
-router.get("/userCreds", cookieValidator, sendUserCreds)
+router.get('/userCreds', cookieValidator, sendUserCreds);
 
 // change account credentials
 router.post(
@@ -38,7 +38,5 @@ router.get('/logout', logout);
 
 // confirm is logged in
 router.get('/isloggedin', isLoggedIn);
-
-
 
 module.exports = router;

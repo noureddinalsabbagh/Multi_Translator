@@ -11,6 +11,7 @@ import SVG from '../images/AccountSettings.svg';
 
 //Animation Imports
 import { motion } from 'framer-motion';
+
 import {
   fadeInVariants,
   inputLeftVariants,
@@ -21,7 +22,9 @@ import {
 
 const AccountSettings = () => {
   const dispatch = useDispatch();
+
   const { user, restLangs } = useSelector((state) => state.accountReducer);
+
   const fetchUser = () => {
     dispatch(getUserCreds());
   };

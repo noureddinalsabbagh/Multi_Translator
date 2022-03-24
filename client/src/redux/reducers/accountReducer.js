@@ -27,7 +27,7 @@ const accountReducer = (state = INITIAL_STATE, action) => {
       );
       return {
         ...state,
-        user: action.payload.user,
+        user: { ...action.payload.user, password: '' },
         restLangs,
       };
 
