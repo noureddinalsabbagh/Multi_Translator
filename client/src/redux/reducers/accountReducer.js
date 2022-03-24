@@ -10,7 +10,7 @@ const languagesArray = [
   'tr',
   'it',
   'pt',
-  'jp',
+  'fr',
   'el',
   'he',
   'ru',

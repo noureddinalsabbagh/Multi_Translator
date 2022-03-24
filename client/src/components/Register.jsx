@@ -151,7 +151,7 @@ const Register = () => {
           {creatCheckbox('tr', '🇹🇷 TR', (e) => handleLangsChange(e))}
           {creatCheckbox('it', '🇮🇹 IT', (e) => handleLangsChange(e))}
           {creatCheckbox('pt', '🇵🇹 PT', (e) => handleLangsChange(e))}
-          {creatCheckbox('jp', '🇯🇵 JP', (e) => handleLangsChange(e))}
+          {creatCheckbox('fr', '🇫🇷 FR', (e) => handleLangsChange(e))}
           {creatCheckbox('el', '🇬🇷 EL', (e) => handleLangsChange(e))}
           {creatCheckbox('he', '🇮🇱 He', (e) => handleLangsChange(e))}
           {creatCheckbox('ru', '🇷🇺 Rus', (e) => handleLangsChange(e))}
