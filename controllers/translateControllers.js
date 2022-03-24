@@ -7,12 +7,10 @@ exports.translateText = async (req, res) => {
     // get the text from the body and user from req object
     const { text } = req.body;
     const { languages } = req.user;
-
     // map through the languages of the user and call translate
     const wordPromises = languages.map(
       async (lang) => await translateText(text, lang)
     );
-
     // wait for all promises from the map to be resolved
     const translations = await Promise.all(wordPromises);
 
