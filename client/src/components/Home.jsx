@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { translate } from '../redux/actions/homeActions';
+import { translate, translateHistory } from '../redux/actions/homeActions';
 import { useSelector } from 'react-redux';
 
 const Home = () => {
   const [text, setText] = useState('');
   const dispatch = useDispatch();
   const state = useSelector((state) => state.homeReducer);
+  const { userHistory, translations } = state
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -20,6 +21,12 @@ const Home = () => {
     e.preventDefault();
     handleDispatch();
   };
+  const handleHistory = () => {
+    dispatch(translateHistory())
+  }
+  useEffect(() => {
+    handleHistory();
+  }, [translations])
   return (
     <>
       <div style={{ display: 'flex' }}>
@@ -34,14 +41,18 @@ const Home = () => {
           <input type="submit" value="translate" />
         </form>
         <div style={{ border: '1px solid', width: 500 }}>
-          {state.translations.map((item, index) => (
+          {translations.map((item, index) => (
             <p key={index}>
               {item.lang}: {item.result}
             </p>
           ))}
         </div>
       </div>
-      <div>history</div>
+      <div>{userHistory.map(item => {
+        return (
+          <p key={item._id}>{item.text}</p>
+        )
+      })}</div>
     </>
   );
 };

@@ -18,10 +18,18 @@ exports.translateText = async (req, res) => {
       text: text,
       translations: convertToObj(languages, translations),
       userId: req.user.id,
+      date: Date.now()
     };
-    const translation = await Translation.create(translationObj);
 
-    return res.status(200).json(translation);
+    // should add only once more???
+    const existsOnlyOne = await Translation.find({ text: text })
+
+    if (!(existsOnlyOne.length > 0)) {
+
+      await Translation.create(translationObj);
+    }
+
+    return res.status(200).json(translationObj);
   } catch (error) {
     res.status(500).json(error.message);
   }
@@ -32,7 +40,7 @@ exports.translateText = async (req, res) => {
 exports.getTranslations = async (req, res) => {
   try {
     const user = req.user;
-    const translations = await Translation.find({ userId: user._id });
+    const translations = await Translation.find({ userId: user._id }).sort({ 'date': -1 }).limit(10);
 
     res.status(200).json({ userHistory: translations });
   } catch (error) {
