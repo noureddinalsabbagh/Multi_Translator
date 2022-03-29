@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { translate, translateHistory } from '../redux/actions/homeActions';
 import { useSelector } from 'react-redux';
 
 const Home = () => {
   const [text, setText] = useState('');
+
   const dispatch = useDispatch();
+
   const state = useSelector((state) => state.homeReducer);
-  const { userHistory, translations } = state
+  const { userHistory, translations } = state;
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -22,16 +24,25 @@ const Home = () => {
     handleDispatch();
   };
   const handleHistory = () => {
-    dispatch(translateHistory())
-  }
+    dispatch(translateHistory());
+  };
   useEffect(() => {
     handleHistory();
-  }, [translations])
+  }, [translations]);
+
+  // translate history words on click
+  const textSpace = useRef();
+  const handleTranslationClick = (e) => {
+    const text = (textSpace.current.value = e.target.innerText);
+    dispatch(translate({ text }));
+  };
+
   return (
     <>
       <div style={{ display: 'flex' }}>
         <form onSubmit={onSubmit}>
           <textarea
+            ref={textSpace}
             name=""
             id=""
             cols="50"
@@ -48,11 +59,15 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <div>{userHistory.map(item => {
-        return (
-          <p key={item._id}>{item.text}</p>
-        )
-      })}</div>
+      <div>
+        {userHistory.map((item) => {
+          return (
+            <p key={item._id} onClick={handleTranslationClick}>
+              {item.text}
+            </p>
+          );
+        })}
+      </div>
     </>
   );
 };

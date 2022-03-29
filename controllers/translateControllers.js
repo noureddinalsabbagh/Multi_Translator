@@ -18,14 +18,13 @@ exports.translateText = async (req, res) => {
       text: text,
       translations: convertToObj(languages, translations),
       userId: req.user.id,
-      date: Date.now()
+      date: Date.now(),
     };
 
-    // should add only once more???
-    const existsOnlyOne = await Translation.find({ text: text })
+    // to list each translation only once
+    const existsOnlyOne = await Translation.find({ text: text });
 
     if (!(existsOnlyOne.length > 0)) {
-
       await Translation.create(translationObj);
     }
 
@@ -40,7 +39,9 @@ exports.translateText = async (req, res) => {
 exports.getTranslations = async (req, res) => {
   try {
     const user = req.user;
-    const translations = await Translation.find({ userId: user._id }).sort({ 'date': -1 }).limit(10);
+    const translations = await Translation.find({ userId: user._id })
+      .sort({ date: -1 })
+      .limit(10);
 
     res.status(200).json({ userHistory: translations });
   } catch (error) {

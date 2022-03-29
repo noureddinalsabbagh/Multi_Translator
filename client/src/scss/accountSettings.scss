@@ -60,9 +60,12 @@
   }
   &__span {
     width: 40px;
-    margin: 0 10px;
+    margin: 5px 10px;
+    padding: 0 2px;
     color: vars.$buttonColor;
     cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.493);
+    border-radius: 5px;
 
     &:hover {
       transform: scale(1.1);

@@ -162,12 +162,15 @@ const AccountSettings = () => {
             >
               old password{' '}
             </motion.label>
-            <input
+            <motion.input
               className="settingsForm__input settingsForm__input--pass"
               onChange={handleOnChange}
               type="text"
               name="password"
               id="password"
+              variants={fadeInVariants}
+              initial="hidden"
+              animate="visible"
             />
             <motion.label
               htmlFor="newPass"
@@ -178,12 +181,15 @@ const AccountSettings = () => {
             >
               new password{' '}
             </motion.label>
-            <input
+            <motion.input
               className="settingsForm__input settingsForm__input--pass"
               onChange={handleOnChange}
               type="text"
               name="newPassword"
               id="newPassword"
+              variants={fadeInVariants}
+              initial="hidden"
+              animate="visible"
             />
           </>
         )}

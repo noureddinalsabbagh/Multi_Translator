@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const translate = (text) => async (dispatch) => {
   dispatch({ type: 'TRANSLATE_START' });
+
   try {
     const res = await axios.post('http://localhost:4001/translate', text, {
       withCredentials: true,
