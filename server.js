@@ -27,9 +27,12 @@ mongoose
 // Routes
 const userRouter = require('./routes/userRoutes');
 const translateRouter = require('./routes/translateRoutes');
+const quizRouter = require('./routes/quizRoutes');
+
 
 app.use('/user', userRouter);
 app.use('/translate', translateRouter);
+app.use("/quiz", quizRouter)
 
 ///////////////////////
 app.listen(process.env.PORT || port, () => {
