@@ -34,7 +34,7 @@ exports.translateText = async (req, res) => {
   }
 };
 
-// get translations for quiz
+// get translations to list in home
 
 exports.getTranslations = async (req, res) => {
   try {

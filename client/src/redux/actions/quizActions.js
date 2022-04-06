@@ -1,11 +1,26 @@
-import axios from "axios"
+import axios from 'axios';
 
 export const getQuizData = () => async (dispatch) => {
-  dispatch({ type: "GET_QUIZ_START" })
+  dispatch({ type: 'GET_QUIZ_START' });
   try {
-    const res = await axios.get("http://localhost:4001/quiz", { withCredentials: true })
-    dispatch({ type: 'GET_QUIZ_SUCCESS', payload: res.data })
+    const res = await axios.get('http://localhost:4001/quiz', {
+      withCredentials: true,
+    });
+    dispatch({ type: 'GET_QUIZ_SUCCESS', payload: res.data });
   } catch (error) {
-    dispatch({ type: 'GET_QUIZ_ERROR', payload: error.mesage })
+    dispatch({ type: 'GET_QUIZ_ERROR', payload: error.mesage });
   }
-}
+};
+
+export const increaseIndex = () => {
+  return {
+    type: 'INCREASE_INDEX',
+  };
+};
+
+export const setScore = (item) => {
+  return {
+    type: 'SET_SCORE',
+    payload: item,
+  };
+};
