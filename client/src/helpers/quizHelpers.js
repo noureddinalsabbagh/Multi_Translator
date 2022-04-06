@@ -59,3 +59,30 @@ export const makeQuizArray = (array) => {
 
   return result;
 };
+
+export const languageConvert = (language) => {
+  switch (language) {
+    case "de":
+      return "German";
+    case "es":
+      return "Spanish";
+    case "ar":
+      return "Arabic";
+    case "tr":
+      return "Turkish";
+    case "it":
+      return "Italian";
+    case "pt":
+      return "Portuguese";
+    case "fr":
+      return "French";
+    case "el":
+      return "Greek";
+    case "he":
+      return "Hebrew";
+    case "ru":
+      return "Russian";
+    default:
+      return ""
+  }
+}
