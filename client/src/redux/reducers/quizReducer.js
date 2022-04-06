@@ -11,6 +11,7 @@ const INITIAL_STATE = {
   ],
   score: 0,
   questionIndex: 0,
+  optionInfo: { showCorrect: false, showFalse: false, optionObj: {} }
 };
 
 const quizReducer = (state = INITIAL_STATE, action) => {
@@ -36,12 +37,17 @@ const quizReducer = (state = INITIAL_STATE, action) => {
     case 'SET_SCORE':
       return action.payload.isCorrect === true
         ? {
-            ...state,
-            isLoading: false,
-            score: state.score + 1,
-          }
+          ...state,
+          isLoading: false,
+          score: state.score + 1,
+        }
         : { ...state, isLoading: false };
-
+    case "SHOW_OPTION_INFO_CORRECT":
+      return { ...state, optionInfo: { ...state.optionInfo, showCorrect: true, showFalse: false, optionObj: action.payload } }
+    case "SHOW_OPTION_INFO_FALSE":
+      return { ...state, optionInfo: { ...state.optionInfo, showFalse: true, showCorrect: false, optionObj: action.payload } }
+    case "CLOSE_OPTION_INFO":
+      return { ...state, optionInfo: { ...state.optionInfo, showFalse: false, showCorrect: false } }
     default:
       return state;
   }

@@ -24,3 +24,12 @@ export const setScore = (item) => {
     payload: item,
   };
 };
+export const showOptionInfoCorrect = (item) => {
+  return { type: 'SHOW_OPTION_INFO_CORRECT', payload: item }
+}
+export const showOptionInfoFalse = (item) => {
+  return { type: 'SHOW_OPTION_INFO_FALSE', payload: item }
+}
+export const closeOptionInfo = () => {
+  return { type: 'CLOSE_OPTION_INFO' }
+}
