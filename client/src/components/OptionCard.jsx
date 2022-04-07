@@ -1,46 +1,65 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { closeOptionInfo, increaseIndex, setScore, showOptionInfoCorrect, showOptionInfoFalse } from '../redux/actions/quizActions';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  closeOptionInfo,
+  increaseIndex,
+  setScore,
+  showOptionInfoCorrect,
+  showOptionInfoFalse,
+  changeClickableTrue,
+  changeClickableFalse,
+} from '../redux/actions/quizActions';
 
 const OptionCard = ({ item }) => {
   const dispatch = useDispatch();
-  const [answerFalse, setAnswerFalse] = useState(false)
-  const [answerCorrect, setAnswerCorrect] = useState(false)
+  const [answerFalse, setAnswerFalse] = useState(false);
+  const [answerCorrect, setAnswerCorrect] = useState(false);
 
-  const handleClick = (item, e) => {
+  const state = useSelector((state) => state.quizReducer);
+
+  const handleClick = (item) => {
+    dispatch(changeClickableFalse());
     dispatch(setScore(item));
 
     if (item.isCorrect) {
-      dispatch(showOptionInfoCorrect(item))
-      setAnswerCorrect(true)
+      dispatch(showOptionInfoCorrect(item));
+      setAnswerCorrect(true);
     } else {
-      dispatch(showOptionInfoFalse(item))
-      setAnswerFalse(true)
+      dispatch(showOptionInfoFalse(item));
+      setAnswerFalse(true);
     }
 
     setTimeout(() => {
       if (item.isCorrect) {
-        setAnswerCorrect(false)
+        setAnswerCorrect(false);
       } else {
-        setAnswerFalse(false)
+        setAnswerFalse(false);
       }
-      dispatch(closeOptionInfo())
+
+      dispatch(closeOptionInfo());
+      dispatch(changeClickableTrue());
       dispatch(increaseIndex());
-    }, 3000);
+    }, 4000);
   };
 
   return (
     <>
       <span
-        className={`answerSpan ${answerCorrect ? "correct" : ""} ${answerFalse ? "notCorrect" : ""}`}
-        onClick={(e) => handleClick(item, e)}
-      >
-        {
-          item.option
+        className={`answerSpan ${answerCorrect ? 'correct' : ''} ${
+          answerFalse ? 'notCorrect' : ''
+        }`}
+        onClick={
+          state.clickable
+            ? () => {
+                handleClick(item);
+              }
+            : null
         }
+      >
+        {item.option}
       </span>
     </>
-  )
-}
+  );
+};
 
-export default OptionCard
+export default OptionCard;

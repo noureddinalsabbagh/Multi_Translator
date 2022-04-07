@@ -25,11 +25,21 @@ export const setScore = (item) => {
   };
 };
 export const showOptionInfoCorrect = (item) => {
-  return { type: 'SHOW_OPTION_INFO_CORRECT', payload: item }
-}
+  return { type: 'SHOW_OPTION_INFO_CORRECT', payload: item };
+};
+
 export const showOptionInfoFalse = (item) => {
-  return { type: 'SHOW_OPTION_INFO_FALSE', payload: item }
-}
+  return { type: 'SHOW_OPTION_INFO_FALSE', payload: item };
+};
+
 export const closeOptionInfo = () => {
-  return { type: 'CLOSE_OPTION_INFO' }
-}
+  return { type: 'CLOSE_OPTION_INFO' };
+};
+
+export const changeClickableTrue = () => {
+  return { type: 'CHANGE_CLICKABLE_TRUE' };
+};
+
+export const changeClickableFalse = () => {
+  return { type: 'CHANGE_CLICKABLE_FALSE' };
+};
