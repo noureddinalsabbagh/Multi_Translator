@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { languageConvert } from '../helpers/quizHelpers';
 import { getQuizData } from '../redux/actions/quizActions';
 import OptionCard from './OptionCard';
+import { Link } from 'react-router-dom';
 
 const Quiz = () => {
   const state = useSelector((state) => state.quizReducer);
@@ -16,42 +17,48 @@ const Quiz = () => {
     handleFetchQuiz();
   }, []);
   return (
-    <div>
+    <div className="quizContainer">
       {questionIndex > 9 ? (
-        <h1>Finished</h1>
-      ) : (
         <>
-          <p
-            style={{ border: '1px solid black', marginBottom: 30, padding: 10 }}
-          >
-            <strong>Question:</strong>find the right translation of the
-            following word <strong>{quizData[questionIndex].text}</strong>
+          <h1 className="quizContainer__header">
+            Your final score is {score} out of 10
+          </h1>
+          <Link className="quizContainer__link" to="/home">
+            Return Home
+          </Link>
+        </>
+      ) : (
+        <div className="quizContainer__quiz">
+          <h1 className="quizContainer__header">Test your skills</h1>
+          <p className="quizContainer__text">
+            Question: find the right translation for the following word:{' '}
+            <strong>{quizData[questionIndex].text}</strong>
           </p>
 
-          <div>
+          <div className="quizContainer__answers">
             {quizData[questionIndex].answers.map((item, ind) => {
               return <OptionCard item={item} key={ind} />;
             })}
+            <h3 className="quizContainer__score">Your score:</h3>
+            <h3> {score}</h3>
           </div>
 
-          <h1>{score}</h1>
-
           {showCorrect && (
-            <p>
+            <p className="quizContainer__text">
               Correct! <strong>{optionObj.option}</strong> means{' '}
-              {quizData[questionIndex].text} in{' '}
-              <strong>{languageConvert(optionObj.optionLang)}</strong>
+              <strong> {quizData[questionIndex].text}</strong> in{' '}
+              {languageConvert(optionObj.optionLang)}
             </p>
           )}
 
           {showFalse && (
-            <p>
+            <p className="quizContainer__text">
               Missed! <strong>{optionObj.option}</strong> means{' '}
               <strong>{optionObj.text}</strong> in{' '}
-              <strong>{languageConvert(optionObj.optionLang)}</strong>
+              {languageConvert(optionObj.optionLang)}
             </p>
           )}
-        </>
+        </div>
       )}
     </div>
   );

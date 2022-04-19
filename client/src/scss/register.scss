@@ -52,7 +52,7 @@
     margin: 20px 0 0;
     text-align: center;
     & a {
-      color: vars.$buttonColor;
+      color: vars.$mainColor;
     }
   }
 
@@ -71,7 +71,7 @@
     border-radius: vars.$borderRadius;
     border: none;
     box-shadow: vars.$InputShadow;
-    background-color: vars.$buttonColor;
+    background-color: vars.$mainColor;
     color: white;
     font: {
       family: vars.$mainFont;
@@ -80,7 +80,7 @@
     }
 
     &:hover {
-      background-color: darken((vars.$buttonColor), 10%);
+      background-color: darken((vars.$mainColor), 10%);
       transition: 0.5s;
     }
   }
