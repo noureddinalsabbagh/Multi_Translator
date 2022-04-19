@@ -21,6 +21,7 @@ const Home = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
     handleDispatch();
   };
   const handleHistory = () => {
@@ -34,6 +35,7 @@ const Home = () => {
   const textSpace = useRef();
   const handleTranslationClick = (e) => {
     const text = (textSpace.current.value = e.target.innerText);
+    setText(text)
     dispatch(translate({ text }));
   };
 

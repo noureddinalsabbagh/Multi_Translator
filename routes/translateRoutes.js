@@ -5,8 +5,9 @@ const {
   getTranslations,
 } = require('../controllers/translateControllers');
 const cookieValidator = require('../middleware/cookieValidator');
+const { tryForErrors } = require('../middleware/errorHandler');
 
-router.post('/', cookieValidator, translateText);
-router.get('/history', cookieValidator, getTranslations);
+router.post('/', cookieValidator, tryForErrors(translateText));
+router.get('/history', cookieValidator, tryForErrors(getTranslations));
 
 module.exports = router;
