@@ -66,7 +66,7 @@ const AccountSettings = () => {
           initial="hidden"
           animate="visible"
         >
-          username
+          Username
         </motion.label>
 
         <div>
@@ -105,7 +105,7 @@ const AccountSettings = () => {
           initial="hidden"
           animate="visible"
         >
-          email
+          Email
         </motion.label>
         <div>
           <motion.input

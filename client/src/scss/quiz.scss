@@ -1,13 +1,99 @@
-.notCorrect {
-  background-color: red;
+@use './abstracts/mixins' as mix;
+@use './abstracts/variables' as vars;
+
+.quizContainer {
+  height: vars.$fullScreen;
+  @include mix.flexBox(column, center, center);
+  background-color: vars.$bgColor;
+  font: {
+    family: vars.$mainFont;
+    size: vars.$fontSizeMob;
+  }
+  padding: 20px;
+
+  &__header {
+    font-size: 25px;
+    color: vars.$mainColor;
+  }
+
+  &__quiz {
+    @include mix.flexBox(column, center, center);
+  }
+
+  &__text {
+    margin: 10px 0;
+    letter-spacing: 3px;
+    text-align: justify;
+  }
+
+  &__answers {
+    @include mix.flexBox(column, center, center);
+    width: 100%;
+  }
+
+  &__answer {
+    margin: 10px 0;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    border: vars.$inputBorder;
+    color: vars.$mainColor;
+  }
+
+  &__score {
+    color: vars.$mainColor;
+  }
+
+  &__link {
+    border: 1px solid;
+    color: white;
+    margin: 10px 0;
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: vars.$mainColor;
+    border-radius: vars.$borderRadius;
+  }
+}
+
+strong {
+  color: vars.$mainColor;
 }
 
 .correct {
-  background-color: green;
+  background-color: vars.$mainColor;
+  color: white;
 }
 
-.answerSpan {
-  border: 1px solid red;
-  margin: 20px;
-  padding: 20px;
+.notCorrect {
+  background-color: #bb3e03;
+  color: white;
+}
+
+// Ipad Break point
+
+@media screen and (min-width: 790px) {
+  .quizContainer {
+    font-size: vars.$fontSizePad;
+    padding: 70px;
+
+    &__header {
+      font-size: 40px;
+    }
+
+    &__link {
+      font-size: 25px;
+    }
+  }
+}
+
+// big screens break point
+
+@media screen and (min-width: 1100px) {
+  .quizContainer {
+    font-size: vars.$fontSizePc;
+
+    &__header {
+      font-size: 45px;
+    }
+  }
 }

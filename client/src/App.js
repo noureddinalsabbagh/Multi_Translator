@@ -7,10 +7,12 @@ import PrivateRoute from './components/PrivateRoute';
 import Quiz from './components/Quiz';
 import Home from './components/Home';
 import AccountSettings from './components/AccountSettings';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
     <div className="App">
+      <NavBar />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

@@ -97,12 +97,13 @@ exports.changeCredentials = async (req, res) => {
 
 };
 
+
 // logout Controller
 exports.logout = (req, res) => {
-
-  res.clearCookie('token_cookie').status(200).json({ msg: 'logged out' });
-
+  res.clearCookie('token_cookie');
+  return res.status(200).json({ msg: 'logged out' });
 };
+
 
 // confirm user is logged in
 exports.isLoggedIn = (req, res) => {
@@ -114,3 +115,5 @@ exports.isLoggedIn = (req, res) => {
   return res.status(200).json({ isLoggedIn: true });
 
 };
+
+

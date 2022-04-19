@@ -47,7 +47,7 @@
 
     &:first-of-type {
       cursor: pointer;
-      color: vars.$buttonColor;
+      color: vars.$mainColor;
     }
   }
 
@@ -62,14 +62,14 @@
     width: 40px;
     margin: 5px 10px;
     padding: 0 2px;
-    color: vars.$buttonColor;
+    color: vars.$mainColor;
     cursor: pointer;
     border: 1px solid rgba(0, 0, 0, 0.493);
     border-radius: 5px;
 
     &:hover {
       transform: scale(1.1);
-      background-color: vars.$buttonColor;
+      background-color: vars.$mainColor;
       border-radius: vars.$borderRadius;
       color: white;
       transition: 0.5s;
@@ -80,11 +80,11 @@
     padding: 2px 6px;
     font-size: vars.$fontSizeMob;
     margin: 10px 0 0 0;
-    background-color: vars.$buttonColor;
+    background-color: vars.$mainColor;
     color: white;
     border-radius: vars.$borderRadius;
     &:hover {
-      background-color: darken((vars.$buttonColor), 10%);
+      background-color: darken((vars.$mainColor), 10%);
       transition: 0.5s;
     }
     &--save {
