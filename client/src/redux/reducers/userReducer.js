@@ -68,6 +68,25 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case 'SEND_NEWCREDS_ERROR':
       return { ...state, error: action.payload, isLoading: false };
 
+    // Logout Cases
+    case 'LOGOUT_START':
+      return state;
+
+    case 'LOGOUT_SUCCESS':
+      return {
+        ...state,
+        isLoggedIn: false,
+        message: action.payload,
+        isLoading: false,
+      };
+
+    case 'LOGOUT_ERROR':
+      return {
+        ...state,
+        isLoading: false,
+        isLoggedIn: true,
+        error: action.payload,
+      };
 
     default:
       return state;

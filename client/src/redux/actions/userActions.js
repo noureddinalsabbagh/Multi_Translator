@@ -72,3 +72,16 @@ export const sendNewCreds = (userCreds) => async (dispatch) => {
   }
 };
 
+// to logout the user
+
+export const logout = () => async (dispatch) => {
+  dispatch({ type: 'LOGOUT_START' });
+  try {
+    const res = await axios.get('http://localhost:4001/user/logout', {
+      withCredentials: true,
+    });
+    dispatch({ type: 'LOGOUT_SUCCESS', payload: res.data });
+  } catch (error) {
+    dispatch({ type: 'LOGOUT_ERROR', payload: error.data });
+  }
+};

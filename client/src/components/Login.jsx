@@ -32,7 +32,7 @@ const Login = () => {
     if (state.isLoggedIn) {
       navigate('/home');
     }
-  }, []);
+  }, [state.isLoggedIn]);
   return (
     <>
       <div className="loginContainer">

@@ -109,15 +109,6 @@ exports.changeCredentials = async (req, res) => {
   }
 };
 
-// logout Controller
-exports.logout = (req, res) => {
-  try {
-    res.clearCookie('token_cookie').status(200).json({ msg: 'logged out' });
-  } catch (error) {
-    res.status(500).json(error.message);
-  }
-};
-
 // confirm user is logged in
 exports.isLoggedIn = (req, res) => {
   try {
@@ -126,6 +117,16 @@ exports.isLoggedIn = (req, res) => {
       return res.status(403).json({ isLoggedIn: false });
     }
     return res.status(200).json({ isLoggedIn: true });
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+};
+
+// logout Controller
+exports.logout = (req, res) => {
+  try {
+    res.clearCookie('token_cookie');
+    return res.status(200).json({ msg: 'logged out' });
   } catch (error) {
     res.status(500).json(error.message);
   }

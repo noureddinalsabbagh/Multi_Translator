@@ -39,13 +39,13 @@ const OptionCard = ({ item }) => {
       dispatch(closeOptionInfo());
       dispatch(changeClickableTrue());
       dispatch(increaseIndex());
-    }, 4000);
+    }, 3000);
   };
 
   return (
     <>
       <span
-        className={`answerSpan ${answerCorrect ? 'correct' : ''} ${
+        className={`quizContainer__answer ${answerCorrect ? 'correct' : ''} ${
           answerFalse ? 'notCorrect' : ''
         }`}
         onClick={
