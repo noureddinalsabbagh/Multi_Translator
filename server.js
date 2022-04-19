@@ -28,11 +28,14 @@ mongoose
 const userRouter = require('./routes/userRoutes');
 const translateRouter = require('./routes/translateRoutes');
 const quizRouter = require('./routes/quizRoutes');
+const { handleAllErrors } = require('./middleware/errorHandler');
 
 
 app.use('/user', userRouter);
 app.use('/translate', translateRouter);
 app.use("/quiz", quizRouter)
+
+app.use(handleAllErrors)
 
 ///////////////////////
 app.listen(process.env.PORT || port, () => {
