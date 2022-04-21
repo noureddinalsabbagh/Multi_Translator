@@ -6,7 +6,7 @@ import SVG from '../images/undraw_completing_re_i7ap_verified.svg';
 
 // animation imports
 import { motion } from 'framer-motion';
-import { fadeInVariants } from '../animation/formAnimations';
+import { fadeInVariants } from '../animation/animationVarients';
 
 const Welcome = () => {
   const { code } = useParams();

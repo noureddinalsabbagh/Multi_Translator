@@ -5,11 +5,11 @@ import { sendLoginForm } from '../redux/actions/userActions';
 import SVG from '../images/login.svg';
 import { motion } from 'framer-motion';
 import {
-  buttonVariants,
+  slideUpVariants,
   fadeInVariants,
   inputLeftVariants,
   inputRightVariants,
-} from '../animation/formAnimations';
+} from '../animation/animationVarients';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -87,7 +87,7 @@ const Login = () => {
           <motion.button
             className="loginForm__submit"
             type="submit"
-            variants={buttonVariants}
+            variants={slideUpVariants}
             initial="hidden"
             animate="visible"
           >
