@@ -4,6 +4,11 @@ import { languageConvert } from '../helpers/quizHelpers';
 import { getQuizData } from '../redux/actions/quizActions';
 import OptionCard from './OptionCard';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import {
+  fadeInVariants,
+  slideUpVariants,
+} from '../animation/animationVarients';
 
 const Quiz = () => {
   const state = useSelector((state) => state.quizReducer);
@@ -29,19 +34,36 @@ const Quiz = () => {
         </>
       ) : (
         <div className="quizContainer__quiz">
-          <h1 className="quizContainer__header">Test your skills</h1>
-          <p className="quizContainer__text">
+          <motion.h1
+            variants={fadeInVariants}
+            animate="visible"
+            initial="hidden"
+            className="quizContainer__header"
+          >
+            Test your skills
+          </motion.h1>
+          <motion.p
+            variants={fadeInVariants}
+            animate="visible"
+            initial="hidden"
+            className="quizContainer__text"
+          >
             Question: find the right translation for the following word:{' '}
             <strong>{quizData[questionIndex].text}</strong>
-          </p>
+          </motion.p>
 
-          <div className="quizContainer__answers">
+          <motion.div
+            className="quizContainer__answers"
+            variants={slideUpVariants}
+            animate="visible"
+            initial="hidden"
+          >
             {quizData[questionIndex].answers.map((item, ind) => {
               return <OptionCard item={item} key={ind} />;
             })}
             <h3 className="quizContainer__score">Your score:</h3>
             <h3> {score}</h3>
-          </div>
+          </motion.div>
 
           {showCorrect && (
             <p className="quizContainer__text">

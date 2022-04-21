@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../redux/actions/userActions';
+import { motion } from 'framer-motion';
+import { slidDown } from '../animation/animationVarients';
 
 const NavBar = () => {
   const state = useSelector((state) => state.userReducer);
@@ -14,7 +15,12 @@ const NavBar = () => {
 
   return (
     <>
-      <ul className="navList">
+      <motion.ul
+        variants={slidDown}
+        initial="hidden"
+        animate="visible"
+        className="navList"
+      >
         {!state.isLoggedIn && (
           <div className="navList__loggedOut">
             <li>
@@ -60,7 +66,7 @@ const NavBar = () => {
             </li>
           </div>
         )}
-      </ul>
+      </motion.ul>
     </>
   );
 };
