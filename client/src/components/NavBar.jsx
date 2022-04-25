@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../redux/actions/userActions';
+import { Toaster } from 'react-hot-toast';
 
 const NavBar = () => {
   const state = useSelector((state) => state.userReducer);
@@ -15,6 +16,7 @@ const NavBar = () => {
   return (
     <>
       <ul className="navList">
+
         {!state.isLoggedIn && (
           <div className="navList__loggedOut">
             <li>

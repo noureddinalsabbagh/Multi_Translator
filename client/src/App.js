@@ -8,10 +8,12 @@ import Quiz from './components/Quiz';
 import Home from './components/Home';
 import AccountSettings from './components/AccountSettings';
 import NavBar from './components/NavBar';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <div className="App">
+      <Toaster />
       <NavBar />
       <Routes>
         <Route path="/login" element={<Login />} />

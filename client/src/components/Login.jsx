@@ -10,12 +10,13 @@ import {
   inputLeftVariants,
   inputRightVariants,
 } from '../animation/formAnimations';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.userReducer);
-
+  const { error, message } = state
   const [userCreds, setUserCreds] = useState({ email: '', password: '' });
 
   // Handle input change
@@ -26,15 +27,26 @@ const Login = () => {
   // Handle form submit
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (userCreds.email === "") {
+      return toast.error("please write your email")
+    } else if (userCreds.password === "") {
+      return toast.error("please write your password")
+    }
     dispatch(sendLoginForm(userCreds));
+
   };
   useEffect(() => {
     if (state.isLoggedIn) {
+
       navigate('/home');
     }
   }, [state.isLoggedIn]);
+
+
   return (
     <>
+
       <div className="loginContainer">
         <motion.img
           className="imageLogin"
@@ -44,8 +56,9 @@ const Login = () => {
           initial="hidden"
           animate="visible"
         />
-
         <form onSubmit={handleSubmit} className="loginForm">
+
+
           <motion.label
             className="loginForm__label"
             htmlFor=""
@@ -103,6 +116,7 @@ const Login = () => {
           </motion.p>
         </form>
       </div>
+
     </>
   );
 };

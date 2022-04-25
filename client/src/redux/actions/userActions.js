@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 // to send login form
 export const sendLoginForm = (userCreds) => async (dispatch) => {
@@ -9,9 +10,10 @@ export const sendLoginForm = (userCreds) => async (dispatch) => {
       userCreds,
       { withCredentials: true }
     );
-    dispatch({ type: 'SEND_LOGIN_SUCCESS', payload: res.data });
+    dispatch({ type: 'SEND_LOGIN_SUCCESS', payload: res.data, error: "" });
   } catch (error) {
-    dispatch({ type: 'SEND_LOGIN_ERROR', payload: error.message });
+    dispatch({ type: 'SEND_LOGIN_ERROR', payload: error.message, message: error.response.data.errMsg });
+    if (error.response.data.errMsg) toast.error(error.response.data.errMsg);
   }
 };
 
@@ -25,9 +27,11 @@ export const sendRegisterForm = (userCreds) => async (dispatch) => {
       userCreds,
       { withCredentials: true }
     );
-    dispatch({ type: 'SEND_REGISTER_SUCCESS', payload: res.data });
+    dispatch({ type: 'SEND_REGISTER_SUCCESS', payload: res.data, error: "" });
   } catch (error) {
     dispatch({ type: 'SEND_REGISTER_ERROR', payload: error.message });
+    if (error.response.data.errMsg) toast.error(error.response.data.errMsg);
+
   }
 };
 
@@ -66,9 +70,12 @@ export const sendNewCreds = (userCreds) => async (dispatch) => {
       userCreds,
       { withCredentials: true }
     );
-    dispatch({ type: 'SEND_NEWCREDS_SUCCESS', payload: res.data });
+    dispatch({ type: 'SEND_NEWCREDS_SUCCESS', payload: res.data, error: "" });
+
   } catch (error) {
-    dispatch({ type: 'SEND_NEWCREDS_ERROR', payload: error.message });
+    dispatch({ type: 'SEND_NEWCREDS_ERROR', payload: error.message, message: error.response.data.errMsg });
+    if (error.response.data.errMsg) toast.error(error.response.data.errMsg);
+
   }
 };
 

@@ -1,3 +1,5 @@
+import toast from "react-hot-toast";
+
 const INITIAL_STATE = {
   isLoading: true,
   data: {},
@@ -9,23 +11,25 @@ const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     //Login cases
     case 'SEND_LOGIN_START':
-      return state;
+      return { ...state, message: "" };
     case 'SEND_LOGIN_SUCCESS':
+      if (action.payload.msg) toast.success(action.payload.msg)
       return {
         ...state,
-        message: action.payload,
+        message: action.payload.msg,
         isLoading: false,
         isLoggedIn: true,
       };
     case 'SEND_LOGIN_ERROR':
-      return { ...state, error: action.payload, isLoading: false };
+      return { ...state, error: action.payload, isLoading: false, message: action.message };
 
     //Register Cases
 
     case 'SEND_REGISTER_START':
-      return state;
+      return { ...state, message: "" };
     case 'SEND_REGISTER_SUCCESS':
-      return { ...state, message: action.payload, isLoading: false };
+      if (action.payload.msg) toast.success(action.payload.msg);
+      return { ...state, message: action.payload.msg, isLoading: false };
     case 'SEND_REGISTER_ERROR':
       return { ...state, error: action.payload, isLoading: false };
 
@@ -57,8 +61,9 @@ const userReducer = (state = INITIAL_STATE, action) => {
 
     // to update user creds
     case 'SEND_NEWCREDS_START':
-      return state;
+      return { ...state, message: "" };
     case 'SEND_NEWCREDS_SUCCESS':
+      if (action.payload) toast.success(action.payload)
       return {
         ...state,
         message: action.payload,
@@ -70,13 +75,14 @@ const userReducer = (state = INITIAL_STATE, action) => {
 
     // Logout Cases
     case 'LOGOUT_START':
-      return state;
+      return { ...state, message: "" };
 
     case 'LOGOUT_SUCCESS':
+      toast.success(action.payload.msg)
       return {
         ...state,
         isLoggedIn: false,
-        message: action.payload,
+        message: action.payload.msg,
         isLoading: false,
       };
 
