@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { sendRegisterForm } from '../redux/actions/userActions';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import creatCheckbox from '../helpers/createCheckbox';
 import SVG from '../images/undraw_profile_details_re_ch9r.svg';
 //Animation Imports
@@ -10,12 +10,17 @@ import {
   fadeInVariants,
   inputLeftVariants,
   inputRightVariants,
+
   slideUpVariants,
 } from '../animation/animationVarients';
 
+
 const Register = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
-  // const state = useSelector((state) => state.userReducer);
+  const state = useSelector((state) => state.userReducer);
+  const { message } = state
+
 
   // user credentials state
   const [userCreds, setUserCreds] = useState({
@@ -47,10 +52,14 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     dispatch(sendRegisterForm(userCreds));
+
   };
+
   return (
     <div className="registerContainer">
+      {/* <Toaster /> */}
       <motion.img
         className="imageRegister"
         src={SVG}
@@ -99,7 +108,7 @@ const Register = () => {
         <motion.input
           name="email"
           className="registerForm__input"
-          type="text"
+          type="email"
           id="email"
           onChange={(e) => {
             handleCredsChange(e);

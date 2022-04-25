@@ -9,6 +9,10 @@ const validateChangeCreds = async (req, res, next) => {
     if (username && username.length < 6) {
       return res.status(403).json({ errMsg: 'Username is too short' });
     }
+    if (username === "") {
+      return res.status(403).json({ errMsg: 'Username is too short' });
+    }
+
     // check email
     if (email && !isEmail(email)) {
       return res.status(403).json({ errMsg: 'invalid email' });
@@ -18,16 +22,21 @@ const validateChangeCreds = async (req, res, next) => {
       const isPasswordTrue = await bcrypt.compare(password, req.user.password);
       if (!isPasswordTrue) {
         return res.status(403).json({ errMsg: 'your password is incorrect' });
-      } else if (isPasswordTrue && newPassword === '') {
+      } else if (isPasswordTrue && newPassword === '' || newPassword === undefined) {
         return res.status(403).json({ errMsg: 'you should add new password' });
       }
     }
+
 
     // check password length
     if (password && newPassword) {
       if (newPassword.length < 8) {
         return res.status(403).json({ errMsg: 'Password is too short' });
       }
+    }
+    if (password === "" && newPassword) {
+      return res.status(403).json({ errMsg: 'please type your old password' });
+
     }
 
     //check if at least one language is chosen

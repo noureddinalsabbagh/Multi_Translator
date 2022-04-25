@@ -112,7 +112,7 @@ const AccountSettings = () => {
             className="settingsForm__input"
             onChange={handleOnChange}
             disabled={isDisabled.emailInput}
-            type="text"
+            type="email"
             name="email"
             id="email"
             value={user.email}
@@ -138,11 +138,13 @@ const AccountSettings = () => {
 
         <motion.p
           className="settingsForm__text"
-          onClick={() =>
+          onClick={() => {
             setIsDisabled({
               ...isDisabled,
               passwordInput: !isDisabled.passwordInput,
-            })
+            });
+            dispatch(updUsernameAndEmail({ password: "", newPassword: "" }))
+          }
           }
           variants={fadeInVariants}
           initial="hidden"
@@ -165,7 +167,7 @@ const AccountSettings = () => {
             <motion.input
               className="settingsForm__input settingsForm__input--pass"
               onChange={handleOnChange}
-              type="text"
+              type="password"
               name="password"
               id="password"
               variants={fadeInVariants}
@@ -184,7 +186,7 @@ const AccountSettings = () => {
             <motion.input
               className="settingsForm__input settingsForm__input--pass"
               onChange={handleOnChange}
-              type="text"
+              type="password"
               name="newPassword"
               id="newPassword"
               variants={fadeInVariants}

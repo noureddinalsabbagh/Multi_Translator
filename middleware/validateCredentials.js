@@ -24,11 +24,11 @@ const validateCreds = (req, res, next) => {
         .json({ errMsg: 'At least one language is required' });
     }
 
-    if (languages.length > 5) {
-      return res
-        .status(403)
-        .json({ errMsg: 'You can only choose five languages' });
-    }
+    // if (languages.length > 5) {
+    //   return res
+    //     .status(403)
+    //     .json({ errMsg: 'You can only choose five languages' });
+    // }
 
     next();
   } catch (error) {
