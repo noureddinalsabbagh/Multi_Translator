@@ -53,7 +53,6 @@
 
   &__langsDiv {
     max-width: 200px;
-    letter-spacing: vars.$letterSpacing;
     @include mix.flexBox(row, flex-start, center);
     text-align: center;
     flex-wrap: wrap;
@@ -61,7 +60,7 @@
   &__span {
     width: 40px;
     margin: 5px 10px;
-    padding: 0 2px;
+    padding: 0 1px;
     color: vars.$mainColor;
     cursor: pointer;
     border: 1px solid rgba(0, 0, 0, 0.493);

@@ -4,13 +4,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { sendLoginForm } from '../redux/actions/userActions';
 import SVG from '../images/login.svg';
 import { motion } from 'framer-motion';
+import toast, { Toaster } from 'react-hot-toast';
 import {
-  buttonVariants,
+  slideUpVariants,
   fadeInVariants,
   inputLeftVariants,
   inputRightVariants,
-} from '../animation/formAnimations';
-import toast, { Toaster } from 'react-hot-toast';
+
+} from '../animation/animationVarients';
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -100,7 +102,7 @@ const Login = () => {
           <motion.button
             className="loginForm__submit"
             type="submit"
-            variants={buttonVariants}
+            variants={slideUpVariants}
             initial="hidden"
             animate="visible"
           >

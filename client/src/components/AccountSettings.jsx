@@ -16,9 +16,9 @@ import {
   fadeInVariants,
   inputLeftVariants,
   inputRightVariants,
-  buttonVariants,
+  slideUpVariants,
   scaleFrames,
-} from '../animation/formAnimations';
+} from '../animation/animationVarients';
 
 const AccountSettings = () => {
   const dispatch = useDispatch();
@@ -253,7 +253,7 @@ const AccountSettings = () => {
           type="submit"
           value="Save"
           className="settingsForm__button settingsForm__button--save"
-          variants={buttonVariants}
+          variants={slideUpVariants}
           initial="hidden"
           animate="visible"
         />

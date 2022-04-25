@@ -19,14 +19,21 @@
   &__item {
     margin: 0 10px;
     color: vars.$mainColor;
+    padding: 10px;
+    border-radius: vars.$borderRadius;
+    transition: 0.5s;
 
     &--logout {
       cursor: pointer;
     }
+
+    &:hover {
+      background-color: darkgray;
+    }
   }
 
   &__loggedIn {
-    @include mix.flexBox(row, center, center);
+    @include mix.flexBox(row, space-around, center);
     width: 100%;
     height: 100%;
   }

@@ -10,9 +10,10 @@ import {
   fadeInVariants,
   inputLeftVariants,
   inputRightVariants,
-  buttonVariants,
-} from '../animation/formAnimations';
-import toast, { Toaster } from 'react-hot-toast';
+
+  slideUpVariants,
+} from '../animation/animationVarients';
+
 
 const Register = () => {
   const navigate = useNavigate()
@@ -169,7 +170,7 @@ const Register = () => {
           className="registerForm__submit"
           type="submit"
           value="Register"
-          variants={buttonVariants}
+          variants={slideUpVariants}
           initial="hidden"
           animate="visible"
         />
