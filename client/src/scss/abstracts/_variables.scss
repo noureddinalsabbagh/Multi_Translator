@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap");
 
 $fullScreen: 92vh;
 $bgColor: #fbfffe;
 $letterSpacing: 3px;
 
-$mainFont: 'Prompt', sans-serif;
+$mainFont: "Prompt", sans-serif;
 
 $borderRadius: 5px;
 
@@ -16,3 +16,4 @@ $mainColor: #208b3a;
 
 $InputShadow: 1px 1px 3px #dcdcdc, -1px -1px 3px #e4e4e4;
 $inputBorder: 0.5px lightgray solid;
+$inputBorderHover: 0.5px solid lightgreen;
