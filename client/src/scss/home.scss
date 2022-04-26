@@ -1,0 +1,179 @@
+@use "./abstracts/mixins" as mix;
+@use "./abstracts/variables" as vars;
+
+.homeContainer {
+    height: vars.$fullScreen;
+    @include mix.flexBox(column, center, center);
+    background-color: vars.$bgColor;
+    width: 20em;
+    margin: 2em auto;
+    color: vars.$mainColor;
+
+    font: {
+        family: vars.$mainFont;
+        weight: bold;
+    }
+    .searchAndResults {
+        @include mix.flexBox(column, space-between, center);
+        width: 100%;
+
+        .searchForm {
+            width: 100%;
+            @include mix.flexBox(column, space-between, center);
+            &__textarea {
+                font: {
+                    family: vars.$mainFont;
+                    size: vars.$fontSizeMob;
+                    weight: bold;
+                }
+                color: vars.$mainColor;
+
+                resize: none;
+                width: 100%;
+                min-height: 5em;
+                height: auto;
+                padding: 0.5em;
+                margin-bottom: 1em;
+                border: vars.$inputBorder;
+                overflow: auto;
+
+                &:hover,
+                &:focus {
+                    border: vars.$inputBorderHover;
+
+                    outline: none;
+                }
+            }
+            &__translateBtn {
+                padding: 5px 20px;
+                border-radius: vars.$borderRadius;
+                border: none;
+                box-shadow: vars.$InputShadow;
+                background-color: vars.$mainColor;
+                color: white;
+                font: {
+                    family: vars.$mainFont;
+                    weight: bold;
+                }
+                &:hover {
+                    background-color: darken((vars.$mainColor), 10%);
+                    transition: 0.5s;
+                }
+            }
+        }
+        .resultsContainer {
+            width: 100%;
+            margin-top: 1em;
+            padding: 0.5em;
+            border: vars.$inputBorder;
+            min-height: 5em;
+            height: auto;
+            &:hover {
+                border: vars.$inputBorderHover;
+            }
+            &__result {
+                padding: 0.1em;
+                strong {
+                    color: rgb(61, 60, 60);
+                    padding: 0 0.3em;
+                }
+                &:hover {
+                    color: white;
+                    background-color: lighten((vars.$mainColor), 30%);
+                    transition: 0.5s;
+                }
+            }
+        }
+    }
+    .searchedWordsContainer {
+        color: black;
+        border: vars.$inputBorder;
+        margin-top: 1em;
+        width: 100%;
+        padding: 0.5em;
+        &:hover {
+            border: vars.$inputBorderHover;
+        }
+        &__heading {
+            color: vars.$mainColor;
+            font-weight: 900;
+            border-bottom: vars.$inputBorder;
+        }
+        &__word:nth-child(odd) {
+            background-color: lightgray;
+        }
+        &__word {
+            margin: 2px 0;
+            padding: 1px 4px;
+            font-weight: 100;
+            opacity: 0.7;
+            &:hover {
+                background-color: lighten((vars.$mainColor), 30%);
+                transition: 0.5s;
+                cursor: pointer;
+                font-weight: bold;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 790px) {
+    :root {
+        font-size: 1.2rem;
+    }
+    .homeContainer {
+        @include mix.flexBox(column, space-evenly, center);
+        width: 40em;
+
+        .searchAndResults {
+            @include mix.flexBox(row, center, space-between);
+            width: 90%;
+            .searchForm {
+                height: 100%;
+                width: 100%;
+                @include mix.flexBox(row, center, space-between);
+                &__textarea {
+                    width: 100%;
+                    height: 100%;
+                    margin-right: 1em;
+                    margin-bottom: 0;
+                }
+                &__translateBtn {
+                    padding: 5px;
+                    letter-spacing: 1px;
+                }
+            }
+            .resultsContainer {
+                width: 75%;
+                margin-left: 1em;
+                margin-top: 0;
+                min-height: 7em;
+            }
+        }
+        .searchedWordsContainer {
+            width: 65%;
+            padding: 0.5em;
+            margin-top: 0;
+        }
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    :root {
+        font-size: 1.4rem;
+    }
+    .homeContainer {
+        width: 50em;
+
+        .searchAndResults {
+            .resultsContainer {
+                width: 90%;
+            }
+        }
+        .searchedWordsContainer {
+            width: 55%;
+            margin-top: 1rem;
+        }
+    }
+}

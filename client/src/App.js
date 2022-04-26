@@ -16,6 +16,7 @@ function App() {
       <Toaster />
       <NavBar />
       <Routes>
+        <Route path="/" element={<PrivateRoute outlet={<Home />} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/confirm/:code" element={<Welcome />} />

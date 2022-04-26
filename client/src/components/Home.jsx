@@ -46,35 +46,38 @@ const Home = () => {
   return (
     <>
       {isLoading ? ("loading") : (<>
-        <Toaster />
-        <div style={{ display: 'flex' }}>
-          <form onSubmit={onSubmit}>
-            <textarea
-              ref={textSpace}
-              name=""
-              id=""
-              cols="50"
-              rows="20"
-              onChange={handleChange}
-            ></textarea>
-            <input type="submit" value="translate" />
-          </form>
-          <div style={{ border: '1px solid', width: 500 }}>
-            {translations.map((item, index) => (
-              <p key={index}>
-                {item.lang}: {item.result}
-              </p>
-            ))}
+
+        <div className="homeContainer">
+          <div className="searchAndResults" >
+            <form className="searchForm" onSubmit={onSubmit}>
+              <textarea className="searchForm__textarea"
+                ref={textSpace}
+                name=""
+                id=""
+                // cols="50"
+                // rows="20"
+                onChange={handleChange}
+              ></textarea>
+              <input className="searchForm__translateBtn" type="submit" value="translate" />
+            </form>
+            <div className="resultsContainer" >
+              {translations.map((item, index) => (
+                <p className="resultsContainer__result" key={index}>
+                  <strong>{item.lang}</strong>: {item.result}
+                </p>
+              ))}
+            </div>
           </div>
-        </div>
-        <div>
-          {userHistory.map((item) => {
-            return (
-              <p key={item._id} onClick={handleTranslationClick}>
-                {item.text}
-              </p>
-            );
-          })}
+          <div className="searchedWordsContainer">
+            <h4 className="searchedWordsContainer__heading">previous searches...</h4>
+            {userHistory.map((item) => {
+              return (
+                <p className="searchedWordsContainer__word" key={item._id} onClick={handleTranslationClick}>
+                  {item.text}
+                </p>
+              );
+            })}
+          </div>
         </div>
       </>)
       }
