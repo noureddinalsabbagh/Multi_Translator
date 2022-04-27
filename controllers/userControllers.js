@@ -100,7 +100,7 @@ exports.changeCredentials = async (req, res) => {
 
 // logout Controller
 exports.logout = (req, res) => {
-  res.clearCookie('token_cookie');
+  res.clearCookie('token_cookie', { httpOnly: true, secure: true, sameSite: "none" });
   return res.status(200).json({ msg: 'logged out' });
 };
 
@@ -109,6 +109,7 @@ exports.logout = (req, res) => {
 exports.isLoggedIn = (req, res) => {
 
   const token = req.cookies.token_cookie;
+
   if (!token) {
     return res.status(403).json({ isLoggedIn: false });
   }
