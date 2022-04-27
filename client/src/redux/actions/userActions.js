@@ -12,7 +12,7 @@ export const sendLoginForm = (userCreds) => async (dispatch) => {
     );
     dispatch({ type: 'SEND_LOGIN_SUCCESS', payload: res.data, error: "" });
   } catch (error) {
-    dispatch({ type: 'SEND_LOGIN_ERROR', payload: error.message, message: error.response.data.errMsg });
+    dispatch({ type: 'SEND_LOGIN_ERROR', payload: error.message });
     if (error.response.data.errMsg) toast.error(error.response.data.errMsg);
   }
 };

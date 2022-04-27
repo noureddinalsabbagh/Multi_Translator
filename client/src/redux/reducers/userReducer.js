@@ -21,7 +21,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         isLoggedIn: true,
       };
     case 'SEND_LOGIN_ERROR':
-      return { ...state, error: action.payload, isLoading: false, message: action.message };
+      return { ...state, error: action.payload, isLoading: false };
 
     //Register Cases
 
