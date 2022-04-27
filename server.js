@@ -1,6 +1,7 @@
 // imports
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 require('dotenv').config();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -30,12 +31,16 @@ const translateRouter = require('./routes/translateRoutes');
 const quizRouter = require('./routes/quizRoutes');
 const { handleAllErrors } = require('./middleware/errorHandler');
 
-
 app.use('/user', userRouter);
 app.use('/translate', translateRouter);
-app.use("/quiz", quizRouter)
+app.use('/quiz', quizRouter);
 
-app.use(handleAllErrors)
+app.use(handleAllErrors);
+
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
 
 ///////////////////////
 app.listen(process.env.PORT || port, () => {
