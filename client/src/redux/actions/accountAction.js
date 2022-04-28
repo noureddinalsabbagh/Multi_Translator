@@ -1,10 +1,15 @@
 import axios from 'axios';
 
+let API_URL = "http://localhost:4001"
+if (process.env.NODE_ENV === 'production') {
+  API_URL = ""
+}
+
 // to get user's credentials
 export const getUserCreds = () => async (dispatch) => {
   dispatch({ type: 'GET_USERCREDS_START' });
   try {
-    const res = await axios.get('/user/userCreds', {
+    const res = await axios.get(`${API_URL}/user/userCreds`, {
       withCredentials: true,
     });
     dispatch({ type: 'GET_USERCREDS_SUCCESS', payload: res.data });

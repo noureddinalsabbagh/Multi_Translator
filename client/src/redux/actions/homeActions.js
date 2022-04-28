@@ -1,10 +1,15 @@
 import axios from 'axios';
 
+let API_URL = "http://localhost:4001"
+if (process.env.NODE_ENV === 'production') {
+  API_URL = ""
+}
+
 export const translate = (text) => async (dispatch) => {
   dispatch({ type: 'TRANSLATE_START' });
 
   try {
-    const res = await axios.post('/translate', text, {
+    const res = await axios.post(`${API_URL}/translate`, text, {
       withCredentials: true,
     });
     dispatch({ type: 'TRANSLATE_SUCCESS', payload: res.data });
@@ -16,7 +21,7 @@ export const translate = (text) => async (dispatch) => {
 export const translateHistory = () => async (dispatch) => {
   dispatch({ type: 'TRANSLATE_HISTORY_START' });
   try {
-    const res = await axios.get('/translate/history', {
+    const res = await axios.get(`${API_URL}/translate/history`, {
       withCredentials: true,
     });
 

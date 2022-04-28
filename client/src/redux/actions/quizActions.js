@@ -1,9 +1,13 @@
 import axios from 'axios';
+let API_URL = "http://localhost:4001"
+if (process.env.NODE_ENV === 'production') {
+  API_URL = ""
+}
 
 export const getQuizData = () => async (dispatch) => {
   dispatch({ type: 'GET_QUIZ_START' });
   try {
-    const res = await axios.get('/quiz', {
+    const res = await axios.get(`${API_URL}/quiz`, {
       withCredentials: true,
     });
     dispatch({ type: 'GET_QUIZ_SUCCESS', payload: res.data });
