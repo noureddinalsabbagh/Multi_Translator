@@ -9,7 +9,7 @@ const homeReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     // translate cases
     case 'TRANSLATE_START':
-      return state;
+      return { ...state, translations: [] };
     case 'TRANSLATE_SUCCESS':
       return {
         ...state,
