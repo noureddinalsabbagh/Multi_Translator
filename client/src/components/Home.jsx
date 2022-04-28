@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { translate, translateHistory } from '../redux/actions/homeActions';
 import { useSelector } from 'react-redux';
-import toast, { Toaster } from 'react-hot-toast';
 
 const Home = () => {
   const [text, setText] = useState('');
@@ -10,8 +9,6 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const state = useSelector((state) => state.homeReducer);
-  const user = useSelector((state) => state.userReducer);
-  const { message } = user
   const { userHistory, translations, isLoading } = state;
 
   const handleChange = (e) => {
@@ -31,7 +28,6 @@ const Home = () => {
     dispatch(translateHistory());
   };
   useEffect(() => {
-    // if (message) toast.success(message);
     handleHistory();
   }, [translations]);
 
