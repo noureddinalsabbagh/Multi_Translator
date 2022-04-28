@@ -4,7 +4,7 @@ import axios from 'axios';
 export const getUserCreds = () => async (dispatch) => {
   dispatch({ type: 'GET_USERCREDS_START' });
   try {
-    const res = await axios.get('http://localhost:4001/user/userCreds', {
+    const res = await axios.get('/user/userCreds', {
       withCredentials: true,
     });
     dispatch({ type: 'GET_USERCREDS_SUCCESS', payload: res.data });

@@ -6,7 +6,7 @@ export const sendLoginForm = (userCreds) => async (dispatch) => {
   dispatch({ type: 'SEND_LOGIN_START' });
   try {
     const res = await axios.post(
-      'http://localhost:4001/user/login',
+      '/user/login',
       userCreds,
       { withCredentials: true }
     );
@@ -23,7 +23,7 @@ export const sendRegisterForm = (userCreds) => async (dispatch) => {
 
   try {
     const res = await axios.post(
-      'http://localhost:4001/user/register',
+      '/user/register',
       userCreds,
       { withCredentials: true }
     );
@@ -40,7 +40,7 @@ export const verifyUser = (code) => async (dispatch) => {
   dispatch({ type: 'VERIFY_USER_START' });
 
   try {
-    const API_URL = 'http://localhost:4001/';
+    const API_URL = '/';
     const res = await axios.get(API_URL + 'user/confirm/' + code);
     dispatch({ type: 'VERIFY_USER_SUCCESS', payload: res.data });
   } catch (error) {
@@ -52,7 +52,7 @@ export const verifyUser = (code) => async (dispatch) => {
 export const checkIsLoggedIn = () => async (dispatch) => {
   dispatch({ type: 'GET_ISLOGGEDIN_START' });
   try {
-    const res = await axios.get('http://localhost:4001/user/isloggedin', {
+    const res = await axios.get('/user/isloggedin', {
       withCredentials: true,
     });
     dispatch({ type: 'GET_ISLOGGEDIN_SUCCESS', payload: res.data });
@@ -66,7 +66,7 @@ export const sendNewCreds = (userCreds) => async (dispatch) => {
   dispatch({ type: 'SEND_NEWCREDS_START' });
   try {
     const res = await axios.post(
-      'http://localhost:4001/user/account',
+      '/user/account',
       userCreds,
       { withCredentials: true }
     );
@@ -84,7 +84,7 @@ export const sendNewCreds = (userCreds) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   dispatch({ type: 'LOGOUT_START' });
   try {
-    const res = await axios.get('http://localhost:4001/user/logout', {
+    const res = await axios.get('/user/logout', {
       withCredentials: true,
     });
     dispatch({ type: 'LOGOUT_SUCCESS', payload: res.data });

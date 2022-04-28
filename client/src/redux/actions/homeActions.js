@@ -4,7 +4,7 @@ export const translate = (text) => async (dispatch) => {
   dispatch({ type: 'TRANSLATE_START' });
 
   try {
-    const res = await axios.post('http://localhost:4001/translate', text, {
+    const res = await axios.post('/translate', text, {
       withCredentials: true,
     });
     dispatch({ type: 'TRANSLATE_SUCCESS', payload: res.data });
@@ -16,7 +16,7 @@ export const translate = (text) => async (dispatch) => {
 export const translateHistory = () => async (dispatch) => {
   dispatch({ type: 'TRANSLATE_HISTORY_START' });
   try {
-    const res = await axios.get('http://localhost:4001/translate/history', {
+    const res = await axios.get('/translate/history', {
       withCredentials: true,
     });
 
