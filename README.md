@@ -4,7 +4,9 @@
 
 ## About:
 This project was made as a final project after a one-year Web development course at Digital Career Institute.
-Contributors are: Nour Alsabbagh and Ramazan Karisan.
+Contributors are:
+Nour Alsabbagh: https://github.com/noureddinalsabbagh
+Ramazan Karisan: https://github.com/ramazankarisan
 
 ## technologies used:
 MERN stack: MongoDB, Express.js, React.js, Node.js
