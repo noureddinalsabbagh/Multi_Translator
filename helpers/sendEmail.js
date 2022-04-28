@@ -4,7 +4,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const sendEmail = async (name, email, code) => {
   let API_URL = "http://localhost:3000"
   if (process.env.NODE_ENV === 'production') {
-    API_URL = ""
+    API_URL = "https://multi-translator.herokuapp.com/"
   }
   const msgObj = {
     to: email,
