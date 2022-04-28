@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { sendLoginForm } from '../redux/actions/userActions';
 import SVG from '../images/login.svg';
 import { motion } from 'framer-motion';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import {
   slideUpVariants,
   fadeInVariants,
@@ -18,7 +18,6 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.userReducer);
-  const { error, message } = state
   const [userCreds, setUserCreds] = useState({ email: '', password: '' });
 
   // Handle input change

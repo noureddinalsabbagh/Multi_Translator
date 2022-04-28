@@ -45,6 +45,9 @@ function shuffleArray(array) {
 }
 
 export const makeQuizArray = (array) => {
+  if (array.includes(undefined)) {
+    return "In order to solve a quiz, you should have at least 10 searched words!"
+  }
   let result = [];
   array.map((item) => {
     const randomInd = randomNum(item.translations.length);
@@ -54,11 +57,12 @@ export const makeQuizArray = (array) => {
       ...otherOptions,
     ];
     shuffleArray(answersArray);
-    result.push({ text: item.text, answers: answersArray });
+    return result.push({ text: item.text, answers: answersArray });
   });
 
   return result;
 };
+
 
 export const languageConvert = (language) => {
   switch (language) {

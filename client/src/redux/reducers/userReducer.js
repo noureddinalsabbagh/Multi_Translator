@@ -38,6 +38,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case 'VERIFY_USER_START':
       return state;
     case 'VERIFY_USER_SUCCESS':
+      if (action.payload.msg) toast.success(action.payload.msg);
+
       return { ...state, message: action.payload.msg, isLoading: false };
     case 'VERIFY_USER_ERROR':
       return { ...state, error: action.payload, isLoading: false };

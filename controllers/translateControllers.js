@@ -22,7 +22,7 @@ exports.translateText = async (req, res) => {
   };
 
   // to list each translation only once
-  const existsOnlyOne = await Translation.find({ text: text });
+  const existsOnlyOne = await Translation.find({ text: text, userId: req.user.id });
 
   if (!(existsOnlyOne.length > 0)) {
     await Translation.create(translationObj);

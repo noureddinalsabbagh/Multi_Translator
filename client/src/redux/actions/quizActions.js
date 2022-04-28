@@ -12,13 +12,18 @@ export const getQuizData = () => async (dispatch) => {
     });
     dispatch({ type: 'GET_QUIZ_SUCCESS', payload: res.data });
   } catch (error) {
-    dispatch({ type: 'GET_QUIZ_ERROR', payload: error.mesage });
+    dispatch({ type: 'GET_QUIZ_ERROR', payload: error.message });
   }
 };
 
 export const increaseIndex = () => {
   return {
     type: 'INCREASE_INDEX',
+  };
+};
+export const makeIndexZero = () => {
+  return {
+    type: 'MAKE_INDEX_ZERO',
   };
 };
 

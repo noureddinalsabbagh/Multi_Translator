@@ -43,12 +43,17 @@ export const sendRegisterForm = (userCreds) => async (dispatch) => {
 export const verifyUser = (code) => async (dispatch) => {
   dispatch({ type: 'VERIFY_USER_START' });
 
+
   try {
     const URL = `${API_URL}/`;
-    const res = await axios.get(URL + 'user/confirm/' + code);
+    const res = await axios.get(URL + 'user/confirm/' + code, {
+      withCredentials: true,
+    });
     dispatch({ type: 'VERIFY_USER_SUCCESS', payload: res.data });
   } catch (error) {
     dispatch({ type: 'VERIFY_USER_ERROR', payload: error.message });
+    if (error.response.data.errMsg) toast.error(error.response.data.errMsg);
+
   }
 };
 

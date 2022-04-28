@@ -19,7 +19,7 @@ const sendEmail = async (name, email, code) => {
   } catch (error) {
     if (error.response) {
       console.error(error.response.body);
-      return res.status(500).json({ msg: 'failed to send an email' });
+      return res.status(500).json({ errMsg: 'failed to send an email' });
     }
   }
 };

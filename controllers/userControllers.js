@@ -25,7 +25,7 @@ exports.register = async (req, res) => {
   });
 
   // Send verification email
-  // await sendEmail(username, email, token);
+  await sendEmail(username, email, token);
   res.status(201).json({
     msg: 'User was registered successfully! Please check your email',
   });
@@ -53,8 +53,9 @@ exports.verifyUser = async (req, res) => {
 
   // Find user with the code matching the one sent in verification mail
   const foundUser = await User.findOne({ confirmationCode: req.params.code });
+
   if (!foundUser) {
-    return res.status(404).send({ msg: 'User Not found.' });
+    return res.status(404).send({ errMsg: 'User Not found.' });
   }
 
   // update user status if code sent from from end matches the one in the document

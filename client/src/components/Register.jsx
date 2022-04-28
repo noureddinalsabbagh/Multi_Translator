@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { sendRegisterForm } from '../redux/actions/userActions';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import creatCheckbox from '../helpers/createCheckbox';
 import SVG from '../images/undraw_profile_details_re_ch9r.svg';
 //Animation Imports
@@ -16,10 +16,7 @@ import {
 
 
 const Register = () => {
-  const navigate = useNavigate()
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.userReducer);
-  const { message } = state
 
 
   // user credentials state

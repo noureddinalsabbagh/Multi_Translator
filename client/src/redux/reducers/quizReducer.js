@@ -34,14 +34,20 @@ const quizReducer = (state = INITIAL_STATE, action) => {
         isLoading: false,
         questionIndex: state.questionIndex + 1,
       };
-
+    case "MAKE_INDEX_ZERO":
+      return {
+        ...state,
+        isLoading: false,
+        questionIndex: 0,
+        score: 0
+      };
     case 'SET_SCORE':
       return action.payload.isCorrect === true
         ? {
-            ...state,
-            isLoading: false,
-            score: state.score + 1,
-          }
+          ...state,
+          isLoading: false,
+          score: state.score + 1,
+        }
         : { ...state, isLoading: false };
 
     case 'SHOW_OPTION_INFO_CORRECT':
