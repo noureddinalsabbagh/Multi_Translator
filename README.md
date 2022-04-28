@@ -9,8 +9,8 @@ Nour Alsabbagh: https://github.com/noureddinalsabbagh
 Ramazan Karisan: https://github.com/ramazankarisan
 
 ## technologies used:
-MERN stack: MongoDB, Express.js, React.js, Node.js
-architecture: REST api
-Styling: SCSS
-Animation: Framer Motion
-Authentication: Jason Web Token
+MERN stack: MongoDB, Express.js, React.js, Node.js.
+architecture: REST api.
+Styling: SCSS.
+Animation: Framer Motion.
+Authentication: Jason Web Token.
