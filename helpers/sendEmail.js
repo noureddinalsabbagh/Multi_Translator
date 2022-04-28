@@ -2,6 +2,10 @@ const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const sendEmail = async (name, email, code) => {
+  let API_URL = "http://localhost:3000"
+  if (process.env.NODE_ENV === 'production') {
+    API_URL = ""
+  }
   const msgObj = {
     to: email,
     from: process.env.EMAIL_FROM,
@@ -9,7 +13,7 @@ const sendEmail = async (name, email, code) => {
     html: `<h1> Email Confirmation</h1>
     <div><h2>Hello ${name}</h2>
     <p>Thank you for registration. Please confirm your email by clicking on the following link</p>
-    <a href=http://localhost:3000/confirm/${code}> Click here</a></div>
+    <a href=${API_URL}/confirm/${code}> Click here</a></div>
     `,
   };
   try {

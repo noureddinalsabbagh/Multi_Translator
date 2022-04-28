@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { sendRegisterForm } from '../redux/actions/userActions';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import creatCheckbox from '../helpers/createCheckbox';
 import SVG from '../images/undraw_profile_details_re_ch9r.svg';
 //Animation Imports
@@ -16,8 +16,9 @@ import {
 
 
 const Register = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const state = useSelector(state => state.userReducer)
 
   // user credentials state
   const [userCreds, setUserCreds] = useState({
@@ -53,7 +54,11 @@ const Register = () => {
     dispatch(sendRegisterForm(userCreds));
 
   };
-
+  useEffect(() => {
+    if (state.message.includes("email")) {
+      navigate("/login")
+    }
+  }, [state.message])
   return (
     <div className="registerContainer">
       {/* <Toaster /> */}
